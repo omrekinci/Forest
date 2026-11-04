@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://nu4w3ja6e1ff"]
+
+[ext_resource type="Script" uid="uid://b2udddmk3k0rr" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7taos"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a8ig"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1159174860]
+script = ExtResource("1_4flbx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1570752264]
+mesh = SubResource("CapsuleMesh_7taos")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1997967430]
+shape = SubResource("CapsuleShape3D_2a8ig")
+
+[node name="Neck" type="Node3D" parent="." unique_id=1430863199]
+
+[node name="Camera3D" type="Camera3D" parent="Neck" unique_id=1710217290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6705221, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=793281831]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=88801866]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -600.0
+offset_top = 50.0
+offset_right = 600.0
+offset_bottom = 85.0
+grow_horizontal = 2
