@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c7mi5oq4wrx7p"]
 
 [ext_resource type="PackedScene" uid="uid://nu4w3ja6e1ff" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://d2dtaajh0b2c4" path="res://Tree.tscn" id="2_e2o6t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
 sky_top_color = Color(0.43525964, 0.56786674, 0.8491745, 1)
@@ -41,5 +42,25 @@ mesh = SubResource("PlaneMesh_2a8ig")
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_2a8ig")
 
+[node name="Tree" parent="." unique_id=1320892409 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.194264, 2.5, 0.23890257)
+target = NodePath("../Player")
+
+[node name="Tree2" parent="." unique_id=1324905416 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3217134, 2.5, 4.507219)
+target = NodePath("../Player")
+
+[node name="Tree4" parent="." unique_id=1798099338 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23012447, 2.5, 7.557636)
+target = NodePath("../Player")
+
+[node name="Tree5" parent="." unique_id=1861124440 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23012447, 2.5, -10.288876)
+target = NodePath("../Player")
+
+[node name="Tree3" parent="." unique_id=1737328558 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3217134, 2.5, -4.639158)
+target = NodePath("../Player")
+
 [node name="Player" parent="." unique_id=1159174860 instance=ExtResource("1_80nbo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17320538, 1.4388027, -0.04664135)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035534382, 1, 0.13079834)

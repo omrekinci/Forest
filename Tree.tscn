@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://d2dtaajh0b2c4"]
+
+[ext_resource type="Script" uid="uid://b7k1u6d0n7lc0" path="res://tree.gd" id="1_nbyt5"]
+[ext_resource type="Texture2D" uid="uid://bxy4vsa3no1qo" path="res://treeplaceholder.png" id="2_dn7q5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72j6q"]
+albedo_texture = ExtResource("2_dn7q5")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2a8ig"]
+size = Vector2(5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pielt"]
+
+[node name="Tree" type="Node3D" unique_id=1320892409]
+script = ExtResource("1_nbyt5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1032127270]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_72j6q")
+mesh = SubResource("PlaneMesh_2a8ig")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1371494984]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=508089108]
+transform = Transform3D(5, 0, 0, 0, 0.01, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_pielt")
