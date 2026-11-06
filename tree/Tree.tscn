@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d2dtaajh0b2c4"]
 
-[ext_resource type="Script" uid="uid://b7k1u6d0n7lc0" path="res://tree.gd" id="1_nbyt5"]
-[ext_resource type="Texture2D" uid="uid://btmmaodxkckwh" path="res://treea.png" id="2_dn7q5"]
+[ext_resource type="Script" uid="uid://b7k1u6d0n7lc0" path="res://tree/tree.gd" id="1_nbyt5"]
+[ext_resource type="Texture2D" uid="uid://btmmaodxkckwh" path="res://tree/treea.png" id="2_dn7q5"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2a8ig"]
 size = Vector2(5, 2)

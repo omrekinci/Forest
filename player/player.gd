@@ -16,8 +16,8 @@ var stamina = 100.0
 var has_stamina = false
 
 @onready var neck: Node3D = $Neck
-@onready var camera: Camera3D = $Neck/Camera3D
-@onready var stamina_bar: ProgressBar = $CanvasLayer/ProgressBar
+@onready var camera: Camera3D = $Neck/Camera
+@onready var stamina_bar: ProgressBar = $CanvasLayer/StaminaBar
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

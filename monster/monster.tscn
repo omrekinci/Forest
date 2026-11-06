@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://6scybx10k4ub"]
+
+[ext_resource type="Script" uid="uid://efkvs0vr36hp" path="res://monster/monster.gd" id="1_s3gyj"]
+[ext_resource type="AudioStream" uid="uid://bxta4ta2w8xe3" path="res://monster/monsternoise.wav" id="2_mrqeg"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_7taos"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2a8ig"]
+
+[node name="Monster" type="CharacterBody3D" unique_id=1321825330]
+script = ExtResource("1_s3gyj")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=117072143]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+mesh = SubResource("SphereMesh_7taos")
+
+[node name="PresenceAuido" type="AudioStreamPlayer3D" parent="." unique_id=253173139]
+stream = ExtResource("2_mrqeg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=714386937]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("SphereShape3D_2a8ig")

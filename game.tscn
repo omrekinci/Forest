@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://c7mi5oq4wrx7p"]
 
-[ext_resource type="PackedScene" uid="uid://nu4w3ja6e1ff" path="res://player.tscn" id="1_80nbo"]
-[ext_resource type="PackedScene" uid="uid://d2dtaajh0b2c4" path="res://Tree.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://nu4w3ja6e1ff" path="res://player/player.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://d2dtaajh0b2c4" path="res://tree/Tree.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://6scybx10k4ub" path="res://monster/monster.tscn" id="3_feb5d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -21,21 +22,30 @@ ssao_enabled = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2a8ig"]
 material = SubResource("StandardMaterial3D_4flbx")
-size = Vector2(30, 30)
+size = Vector2(300, 300)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2a8ig"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7taos"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a8ig"]
+
 [node name="Node3D" type="Node3D" unique_id=1103386871]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1124324869]
+transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
+light_energy = 0.002
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=913211522]
 environment = SubResource("Environment_fc0e3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=3467525]
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=3467525]
 mesh = SubResource("PlaneMesh_2a8ig")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=375447449]
+[node name="FloorBody" type="StaticBody3D" parent="Floor" unique_id=375447449]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=396834006]
+[node name="FloorCollision" type="CollisionShape3D" parent="Floor/FloorBody" unique_id=396834006]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_2a8ig")
 
@@ -43,37 +53,72 @@ shape = SubResource("WorldBoundaryShape3D_2a8ig")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.194264, 1.862576, 0.23890257)
 target = NodePath("../Player")
 
-[node name="Tree2" parent="." unique_id=1940902099 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.194264, 1.862576, 10.522694)
+[node name="Tree2" parent="." unique_id=882229632 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.194264, 1.862576, -15.659613)
 target = NodePath("../Player")
 
-[node name="Tree3" parent="." unique_id=2107170895 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.194264, 1.862576, -10.125759)
+[node name="Tree3" parent="." unique_id=1678194335 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.194264, 1.862576, 14.1814)
 target = NodePath("../Player")
 
-[node name="Tree4" parent="." unique_id=878891476 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2276163, 1.862576, 0.23890257)
+[node name="Tree4" parent="." unique_id=726561796 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.137937, 1.862576, 0.23890257)
 target = NodePath("../Player")
 
-[node name="Tree5" parent="." unique_id=1708902838 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2276163, 1.862576, 10.522694)
+[node name="Tree5" parent="." unique_id=939925493 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.137937, 1.862576, -15.659613)
 target = NodePath("../Player")
 
-[node name="Tree6" parent="." unique_id=1058118283 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2276163, 1.862576, -10.125759)
+[node name="Tree6" parent="." unique_id=124025747 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.137937, 1.862576, 14.1814)
 target = NodePath("../Player")
 
-[node name="Tree7" parent="." unique_id=146181032 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.280096, 1.862576, 0.23890257)
+[node name="Tree7" parent="." unique_id=1350574028 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.320797, 1.862576, 0.23890257)
 target = NodePath("../Player")
 
-[node name="Tree8" parent="." unique_id=349798045 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.280096, 1.862576, 10.522694)
+[node name="Tree8" parent="." unique_id=624433696 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.320797, 1.862576, -15.659613)
 target = NodePath("../Player")
 
-[node name="Tree9" parent="." unique_id=1015480625 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.280096, 1.862576, -10.125759)
+[node name="Tree9" parent="." unique_id=1941646122 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.320797, 1.862576, 14.1814)
 target = NodePath("../Player")
 
 [node name="Player" parent="." unique_id=1159174860 instance=ExtResource("1_80nbo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035534382, 1, 0.13079834)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player" unique_id=368116434]
+mesh = SubResource("CapsuleMesh_7taos")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Player" unique_id=2049104192]
+shape = SubResource("CapsuleShape3D_2a8ig")
+
+[node name="Neck2" type="Node3D" parent="Player" unique_id=471347864]
+
+[node name="Camera3D" type="Camera3D" parent="Player/Neck2" unique_id=297418239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6705221, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck2" unique_id=1772148151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1549604, 0.5252811)
+visible = false
+spot_range = 10.0
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="Player" unique_id=1531126213]
+visible = false
+
+[node name="ProgressBar" type="ProgressBar" parent="Player/CanvasLayer2" unique_id=389193340]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -600.0
+offset_top = 50.0
+offset_right = 600.0
+offset_bottom = 85.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Monster" parent="." unique_id=1321825330 node_paths=PackedStringArray("player") instance=ExtResource("3_feb5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8681908, 2.1132798, -18.819395)
+player = NodePath("../Player")
