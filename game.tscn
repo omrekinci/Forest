@@ -3,17 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://nu4w3ja6e1ff" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://d2dtaajh0b2c4" path="res://Tree.tscn" id="2_e2o6t"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
-sky_top_color = Color(0.43525964, 0.56786674, 0.8491745, 1)
-sky_horizon_color = Color(0.76956743, 0.7949692, 0.8562962, 1)
-ground_horizon_color = Color(0.76956743, 0.7949692, 0.8562962, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.037077263, 0.040375903, 0.067132495, 1)
+ground_bottom_color = Color(0.020292198, 0.03348676, 0.14051312, 1)
+ground_horizon_color = Color(0.037077263, 0.040375903, 0.067132495, 1)
 
-[sub_resource type="Sky" id="Sky_e2o6t"]
-sky_material = SubResource("ProceduralSkyMaterial_80nbo")
+[sub_resource type="Sky" id="Sky_feb5d"]
+sky_material = SubResource("ProceduralSkyMaterial_e2o6t")
 
-[sub_resource type="Environment" id="Environment_feb5d"]
+[sub_resource type="Environment" id="Environment_fc0e3"]
 background_mode = 2
-sky = SubResource("Sky_e2o6t")
+sky = SubResource("Sky_feb5d")
 ssao_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4flbx"]
@@ -26,12 +27,8 @@ size = Vector2(30, 30)
 
 [node name="Node3D" type="Node3D" unique_id=1103386871]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=628028436]
-transform = Transform3D(-0.8415108, 0.44629166, -0.3044395, 0, 0.56352603, 0.8260983, 0.54024035, 0.69517064, -0.47421324, 0, 0, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=109936522]
-environment = SubResource("Environment_feb5d")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=913211522]
+environment = SubResource("Environment_fc0e3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=3467525]
 mesh = SubResource("PlaneMesh_2a8ig")
@@ -43,23 +40,39 @@ transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_2a8ig")
 
 [node name="Tree" parent="." unique_id=1320892409 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.194264, 2.5, 0.23890257)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.194264, 1.862576, 0.23890257)
 target = NodePath("../Player")
 
-[node name="Tree2" parent="." unique_id=1324905416 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3217134, 2.5, 4.507219)
+[node name="Tree2" parent="." unique_id=1940902099 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.194264, 1.862576, 10.522694)
 target = NodePath("../Player")
 
-[node name="Tree4" parent="." unique_id=1798099338 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23012447, 2.5, 7.557636)
+[node name="Tree3" parent="." unique_id=2107170895 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.194264, 1.862576, -10.125759)
 target = NodePath("../Player")
 
-[node name="Tree5" parent="." unique_id=1861124440 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23012447, 2.5, -10.288876)
+[node name="Tree4" parent="." unique_id=878891476 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2276163, 1.862576, 0.23890257)
 target = NodePath("../Player")
 
-[node name="Tree3" parent="." unique_id=1737328558 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3217134, 2.5, -4.639158)
+[node name="Tree5" parent="." unique_id=1708902838 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2276163, 1.862576, 10.522694)
+target = NodePath("../Player")
+
+[node name="Tree6" parent="." unique_id=1058118283 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2276163, 1.862576, -10.125759)
+target = NodePath("../Player")
+
+[node name="Tree7" parent="." unique_id=146181032 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.280096, 1.862576, 0.23890257)
+target = NodePath("../Player")
+
+[node name="Tree8" parent="." unique_id=349798045 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.280096, 1.862576, 10.522694)
+target = NodePath("../Player")
+
+[node name="Tree9" parent="." unique_id=1015480625 node_paths=PackedStringArray("target") instance=ExtResource("2_e2o6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.280096, 1.862576, -10.125759)
 target = NodePath("../Player")
 
 [node name="Player" parent="." unique_id=1159174860 instance=ExtResource("1_80nbo")]
