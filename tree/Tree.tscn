@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://d2dtaajh0b2c4"]
 
-[ext_resource type="Script" uid="uid://b7k1u6d0n7lc0" path="res://tree/tree.gd" id="1_nbyt5"]
 [ext_resource type="Texture2D" uid="uid://btmmaodxkckwh" path="res://tree/treea.png" id="2_dn7q5"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2a8ig"]
@@ -9,10 +8,11 @@ size = Vector2(5, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_pielt"]
 
 [node name="Tree" type="Node3D" unique_id=1320892409]
-script = ExtResource("1_nbyt5")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1583145426]
 transform = Transform3D(-4, 1.748455e-07, 6.039832e-07, 1.7484555e-07, 4, 3.496911e-07, -6.039832e-07, 3.4969113e-07, -4, 0, 0.60602236, 0)
+billboard = 1
+shaded = true
 texture = ExtResource("2_dn7q5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1032127270]

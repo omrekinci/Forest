@@ -9,6 +9,7 @@ extends CharacterBody3D
 
 enum State { wandering, stalking, waiting, chasing, fleeing }
 var current_state: State = State.wandering
+var is_stunned = false
 
 var wait_timer: float = 0.0
 var chase_timer: float = 0.0
@@ -22,7 +23,6 @@ func _physics_process(delta: float) -> void:
 	
 	var player_distance = global_position.distance_to(player.global_position)
 	
-	# EMERGENCY TRIGGER: If the player gets closer than 8 meters, instantly start chasing!
 	if player_distance < 8.0 and current_state != State.chasing and current_state != State.fleeing:
 		chase_timer = 0.0
 		current_state = State.chasing
@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 				current_state = State.wandering
 				return
 			
-			if player_distance <= 13.0 and not has_played_sound:
+			if player_distance <= 15.0 and not has_played_sound:
 				if audio_player and audio_player.stream:
 					audio_player.play()
 					has_played_sound = true
@@ -125,3 +125,11 @@ func _physics_process(delta: float) -> void:
 					current_state = State.wandering
 				else:
 					current_state = State.stalking
+
+func stun():
+	print("stunmonster")
+	is_stunned = true
+	set_physics_process(false)
+	await get_tree().create_timer(5.0).timeout
+	set_physics_process(true)
+	is_stunned = false
