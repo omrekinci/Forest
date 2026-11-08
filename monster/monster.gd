@@ -35,7 +35,8 @@ func _physics_process(delta: float) -> void:
 				current_state = State.stalking
 				return
 			
-			if player_distance > 45.0:
+			if player_distance > 50.0:
+				wander_speed = 20
 				wander_target = player.global_position
 			else:
 				wander_timer -= delta
@@ -130,6 +131,7 @@ func stun():
 	print("stunmonster")
 	is_stunned = true
 	set_physics_process(false)
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	set_physics_process(true)
 	is_stunned = false
+	current_state = State.fleeing

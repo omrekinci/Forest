@@ -15,13 +15,13 @@ billboard = 1
 shaded = true
 texture = ExtResource("2_dn7q5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1032127270]
-transform = Transform3D(1.790384e-15, -4.371139e-08, -1.2322512, -0.93703747, -4.371139e-08, 0, -4.0959208e-08, 1, -5.386341e-08, 0.42397976, 0.49605608, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sprite3D" unique_id=1032127270]
+transform = Transform3D(-1.0239801e-08, -2.6821105e-08, 0.3080628, -0.23425937, 1.0927848e-08, -1.3465849e-08, -1.0239802e-08, -0.25, -3.3050334e-08, -0.10599494, -0.027491562, 1.36014e-08)
 visible = false
 mesh = SubResource("PlaneMesh_2a8ig")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1371494984]
+[node name="StaticBody3D" type="StaticBody3D" parent="Sprite3D/MeshInstance3D" unique_id=1371494984]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=508089108]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sprite3D/MeshInstance3D/StaticBody3D" unique_id=508089108]
 transform = Transform3D(5, 0, 0, 0, 0.01, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("BoxShape3D_pielt")

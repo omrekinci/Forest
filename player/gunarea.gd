@@ -3,6 +3,8 @@ extends Area3D
 var monster_in_area = false
 var bullets = 2
 
+@onready var blast: AudioStreamPlayer = $Gunblast
+
 func _ready() -> void:
 	pass
 
@@ -25,6 +27,10 @@ func _on_area_exited(area: Area3D) -> void:
 
 func shoot():
 	if bullets > 0:
+		
+		if blast and blast.stream:
+			blast.play()
+		
 		if monster_in_area == true:
 			var overlapping_areas = get_overlapping_areas()
 		

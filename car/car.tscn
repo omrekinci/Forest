@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bt0mwgs6xi2bj"]
+
+[ext_resource type="Texture2D" uid="uid://bwqvqnatmrgbg" path="res://car/carside2.png" id="1_xhmyn"]
+[ext_resource type="Texture2D" uid="uid://2wfbuof854dr" path="res://car/wheel.png" id="2_vl2bd"]
+[ext_resource type="Texture2D" uid="uid://cl52jmvnelrns" path="res://car/carside1.png" id="3_72ido"]
+[ext_resource type="Texture2D" uid="uid://byeijekb38awp" path="res://car/carback.png" id="4_coc8s"]
+[ext_resource type="Texture2D" uid="uid://ll5ic12x34le" path="res://car/carfront.png" id="5_wdy7j"]
+[ext_resource type="Texture2D" uid="uid://caqe7xti3r0fk" path="res://car/carfront1.png" id="6_1h1lg"]
+[ext_resource type="Texture2D" uid="uid://jsfej8e6y8ll" path="res://car/car1.png" id="7_u1hgu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2a8ig"]
+size = Vector3(5.0285034, 1.2720337, 2.0037231)
+
+[node name="Car" type="Node3D" unique_id=265846686]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1914226716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007171631, 0.13601685, 0.016937256)
+
+[node name="car side" type="Sprite3D" parent="StaticBody3D" unique_id=2016489248]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.007171631, -0.13601685, 0.98306274)
+shaded = true
+texture = ExtResource("1_xhmyn")
+
+[node name="wheel" type="Sprite3D" parent="StaticBody3D/car side" unique_id=881788591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.3375, 0.012055278)
+shaded = true
+texture = ExtResource("2_vl2bd")
+
+[node name="wheel2" type="Sprite3D" parent="StaticBody3D/car side" unique_id=425700929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.3375, 0.012055278)
+shaded = true
+texture = ExtResource("2_vl2bd")
+
+[node name="car side2" type="Sprite3D" parent="StaticBody3D/car side" unique_id=186415490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shaded = true
+texture = ExtResource("1_xhmyn")
+
+[node name="car side3" type="Sprite3D" parent="StaticBody3D/car side" unique_id=603367295]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.3729329, 0.5782594, -1.0007666)
+shaded = true
+texture = ExtResource("3_72ido")
+
+[node name="car side4" type="Sprite3D" parent="StaticBody3D/car side" unique_id=1418873220]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.3729329, 0.5782594, -0.00076663494)
+shaded = true
+texture = ExtResource("3_72ido")
+
+[node name="wheel3" type="Sprite3D" parent="StaticBody3D/car side" unique_id=253856451]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.3375, -1.00295)
+shaded = true
+texture = ExtResource("2_vl2bd")
+
+[node name="wheel4" type="Sprite3D" parent="StaticBody3D/car side" unique_id=2063765634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.3375, -1.00295)
+shaded = true
+texture = ExtResource("2_vl2bd")
+
+[node name="car back" type="Sprite3D" parent="StaticBody3D/car side" unique_id=1754701170]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.25, 0, -0.5)
+shaded = true
+texture = ExtResource("4_coc8s")
+
+[node name="car back2" type="Sprite3D" parent="StaticBody3D/car side" unique_id=1617733387]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.245, 0.5785, -0.501)
+shaded = true
+texture = ExtResource("5_wdy7j")
+
+[node name="car back3" type="Sprite3D" parent="StaticBody3D/car side" unique_id=326970936]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.48143065, 0.5782594, -0.50076663)
+shaded = true
+texture = ExtResource("5_wdy7j")
+
+[node name="car front" type="Sprite3D" parent="StaticBody3D/car side" unique_id=1626412518]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.25, 0, -0.5)
+shaded = true
+texture = ExtResource("6_1h1lg")
+
+[node name="car top" type="Sprite3D" parent="StaticBody3D/car side" unique_id=893758364]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.375, -0.5)
+shaded = true
+texture = ExtResource("7_u1hgu")
+
+[node name="car top2" type="Sprite3D" parent="StaticBody3D/car side" unique_id=394153235]
+transform = Transform3D(0.7, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.3829329, 0.9782594, -0.50076663)
+shaded = true
+texture = ExtResource("7_u1hgu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1798004542]
+shape = SubResource("BoxShape3D_2a8ig")
