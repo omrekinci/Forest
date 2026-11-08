@@ -13,4 +13,6 @@ You also have a stamina and it gets drained when you run by pressing shift
 
 
 How to install:
-You can install by downloading it from this link: https://github.com/omrekinci/Forest/releases/tag/SelectTag
+You can install by clicking on the link: https://github.com/omrekinci/Forest/releases/tag/SelectTag
+*Downloading the game
+*Opening the game
