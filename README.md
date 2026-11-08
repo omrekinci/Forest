@@ -1,6 +1,7 @@
 I wanted to make a nextbot style game so I made this
 
 In the game you can:
+
 *Move like any other first-person game
 *Shoot your gun to protect yourself from the monster
 
