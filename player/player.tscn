@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://bsjmt6jd77duw" path="res://player/body_area.gd" id="2_g6k8r"]
 [ext_resource type="Script" uid="uid://chfepiljgtt8n" path="res://player/gunarea.gd" id="2_rkbax"]
 [ext_resource type="Texture2D" uid="uid://d1bs48jfs7kj7" path="res://player/gun.png" id="3_g1dw6"]
-[ext_resource type="AudioStream" uid="uid://bho0f8kx17awn" path="res://player/gunblast.wav" id="3_qjkh3"]
+[ext_resource type="AudioStream" uid="uid://bho0f8kx17awn" path="res://player/Gunblast.wav" id="3_qjkh3"]
+[ext_resource type="Script" uid="uid://bvmgdyhjrxci7" path="res://player/camera.gd" id="4_rgyib"]
 [ext_resource type="Script" uid="uid://de5i67mji82up" path="res://player/gun.gd" id="4_yw30f"]
+[ext_resource type="Script" uid="uid://cd4nnavbas7lh" path="res://player/canvas_layer.gd" id="7_boad6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7taos"]
 
@@ -16,6 +18,32 @@ size = Vector3(2.3702393, 1.788208, 6.2022705)
 
 [node name="Player" type="CharacterBody3D" unique_id=1159174860]
 script = ExtResource("1_4flbx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=793281831]
+script = ExtResource("7_boad6")
+
+[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer" unique_id=88801866]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -600.0
+offset_top = 50.0
+offset_right = 600.0
+offset_bottom = 85.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="bullets" type="Label" parent="CanvasLayer" unique_id=2074635545]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 64
+
+[node name="ammo" type="Label" parent="CanvasLayer" unique_id=1715141398]
+offset_left = 34.0
+offset_top = 43.0
+offset_right = 74.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 24
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=1570752264]
 mesh = SubResource("CapsuleMesh_7taos")
@@ -30,6 +58,20 @@ shape = SubResource("CapsuleShape3D_2a8ig")
 
 [node name="Camera" type="Camera3D" parent="Neck" unique_id=1710217290]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6705221, 0)
+script = ExtResource("4_rgyib")
+
+[node name="Gun" type="Sprite3D" parent="Neck/Camera" unique_id=440286558]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.31418976, -0.12424755, -1.1046304)
+texture = ExtResource("3_g1dw6")
+script = ExtResource("4_yw30f")
+
+[node name="gunlight" type="SpotLight3D" parent="Neck/Camera" unique_id=132756939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41171274, -0.07936609, -1.0621696)
+light_color = Color(0.7808132, 0.7747134, 0.16951805, 1)
+light_energy = 30.0
+spot_range = 20.0
+spot_attenuation = 0.1
+spot_angle = 30.0
 
 [node name="gunarea" type="Area3D" parent="Neck/Camera" unique_id=324856807]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.6705221, 0)
@@ -42,36 +84,10 @@ stream = ExtResource("3_qjkh3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2744751, 0.394104, -3.3582153)
 shape = SubResource("BoxShape3D_2a8ig")
 
-[node name="Gun" type="Sprite3D" parent="Neck/Camera" unique_id=440286558]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.31418976, -0.12424755, -1.1046304)
-texture = ExtResource("3_g1dw6")
-script = ExtResource("4_yw30f")
-
-[node name="gunlight" type="SpotLight3D" parent="Neck/Camera/Gun" unique_id=132756939]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -3.629512, 0.2244072, 0.21230412)
-light_color = Color(0.7808132, 0.7747134, 0.16951805, 1)
-light_energy = 30.0
-spot_range = 20.0
-spot_attenuation = 0.1
-spot_angle = 30.0
-
 [node name="Flashlight" type="SpotLight3D" parent="Neck/Camera" unique_id=1389959601]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03184843, -0.16850567)
 light_energy = 2.0
 spot_range = 11.0
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=793281831]
-
-[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer" unique_id=88801866]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -600.0
-offset_top = 50.0
-offset_right = 600.0
-offset_bottom = 85.0
-grow_horizontal = 2
-metadata/_edit_use_anchors_ = true
 
 [connection signal="area_entered" from="Body/BodyArea" to="Body/BodyArea" method="_on_area_entered"]
 [connection signal="area_entered" from="Neck/Camera/gunarea" to="Neck/Camera/gunarea" method="_on_area_entered"]

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c56qtakwi12b3"]
+
+[ext_resource type="Texture2D" uid="uid://br6ttv3i43huj" path="res://ammo/ammobox.png" id="1_kp58d"]
+[ext_resource type="Script" uid="uid://uekul3pl6hmp" path="res://ammo/ammoarea.gd" id="2_sdatr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2a8ig"]
+
+[node name="Ammobox" type="CharacterBody3D" unique_id=1200300365]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="ammosprite" type="Sprite3D" parent="." unique_id=2100342120]
+billboard = 1
+texture = ExtResource("1_kp58d")
+
+[node name="ammoarea" type="Area3D" parent="ammosprite" unique_id=1619082468]
+script = ExtResource("2_sdatr")
+
+[node name="ammocollision" type="CollisionShape3D" parent="ammosprite/ammoarea" unique_id=924943852]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_2a8ig")
+
+[connection signal="area_entered" from="ammosprite/ammoarea" to="ammosprite/ammoarea" method="_on_area_entered"]

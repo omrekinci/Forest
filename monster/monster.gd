@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
 @export var player: Node3D
-@export var initial_move_speed: float = 3.0
-@export var final_move_speed: float = 10.0
-@export var wander_speed: float = 2.0
+@export var initial_move_speed: float = 5.0
+@export var final_move_speed: float = 12.5
+@export var wander_speed: float = 10.0
 
 @onready var audio_player: AudioStreamPlayer3D = $PresenceAuido
 
@@ -93,7 +93,7 @@ func _physics_process(delta: float) -> void:
 		State.chasing:
 			chase_timer += delta
 			
-			if chase_timer >= 3.0:
+			if chase_timer >= 4.0:
 				current_state = State.fleeing
 				return
 			

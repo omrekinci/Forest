@@ -1,7 +1,6 @@
 extends Area3D
 
 var monster_in_area = false
-var bullets = 2
 
 @onready var blast: AudioStreamPlayer = $Gunblast
 
@@ -15,6 +14,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			shoot()
+	
+	if Input.is_key_pressed(KEY_R):
+		if Numbers.bullets == 0 and Numbers.ammo >= 2:
+			Numbers.bullets += 2
+			Numbers.ammo -= 2
+		elif Numbers.bullets == 0 and Numbers.ammo == 1:
+			Numbers.bullets += 1
+			Numbers.ammo -= 1
+		elif Numbers.bullets == 1 and Numbers.ammo >= 1:
+			Numbers.bullets += 1
+			Numbers.ammo -= 1
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.name == "MonsterArea":
@@ -26,7 +36,8 @@ func _on_area_exited(area: Area3D) -> void:
 		monster_in_area = false
 
 func shoot():
-	if bullets > 0:
+	if Numbers.bullets > 0:
+		Numbers.bullets -= 1
 		
 		if blast and blast.stream:
 			blast.play()
