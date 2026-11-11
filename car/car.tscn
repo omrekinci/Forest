@@ -18,71 +18,85 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007171631, 0.13601685, 0.01
 
 [node name="car side" type="Sprite3D" parent="StaticBody3D" unique_id=2016489248]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.007171631, -0.13601685, 0.98306274)
+transparent = false
 shaded = true
 texture = ExtResource("1_xhmyn")
 
 [node name="wheel" type="Sprite3D" parent="StaticBody3D/car side" unique_id=881788591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.3375, 0.012055278)
+transparent = false
 shaded = true
 texture = ExtResource("2_vl2bd")
 
 [node name="wheel2" type="Sprite3D" parent="StaticBody3D/car side" unique_id=425700929]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.3375, 0.012055278)
+transparent = false
 shaded = true
 texture = ExtResource("2_vl2bd")
 
 [node name="car side2" type="Sprite3D" parent="StaticBody3D/car side" unique_id=186415490]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transparent = false
 shaded = true
 texture = ExtResource("1_xhmyn")
 
 [node name="car side3" type="Sprite3D" parent="StaticBody3D/car side" unique_id=603367295]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.3729329, 0.5782594, -1.0007666)
+transparent = false
 shaded = true
 texture = ExtResource("3_72ido")
 
 [node name="car side4" type="Sprite3D" parent="StaticBody3D/car side" unique_id=1418873220]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.3729329, 0.5782594, -0.00076663494)
+transparent = false
 shaded = true
 texture = ExtResource("3_72ido")
 
 [node name="wheel3" type="Sprite3D" parent="StaticBody3D/car side" unique_id=253856451]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.3375, -1.00295)
+transparent = false
 shaded = true
 texture = ExtResource("2_vl2bd")
 
 [node name="wheel4" type="Sprite3D" parent="StaticBody3D/car side" unique_id=2063765634]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.3375, -1.00295)
+transparent = false
 shaded = true
 texture = ExtResource("2_vl2bd")
 
 [node name="car back" type="Sprite3D" parent="StaticBody3D/car side" unique_id=1754701170]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.25, 0, -0.5)
+transparent = false
 shaded = true
 texture = ExtResource("4_coc8s")
 
 [node name="car back2" type="Sprite3D" parent="StaticBody3D/car side" unique_id=1617733387]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.245, 0.5785, -0.501)
+transparent = false
 shaded = true
 texture = ExtResource("5_wdy7j")
 
 [node name="car back3" type="Sprite3D" parent="StaticBody3D/car side" unique_id=326970936]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.48143065, 0.5782594, -0.50076663)
+transparent = false
 shaded = true
 texture = ExtResource("5_wdy7j")
 
 [node name="car front" type="Sprite3D" parent="StaticBody3D/car side" unique_id=1626412518]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.25, 0, -0.5)
+transparent = false
 shaded = true
 texture = ExtResource("6_1h1lg")
 
 [node name="car top" type="Sprite3D" parent="StaticBody3D/car side" unique_id=893758364]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.375, -0.5)
+transparent = false
 shaded = true
 texture = ExtResource("7_u1hgu")
 
 [node name="car top2" type="Sprite3D" parent="StaticBody3D/car side" unique_id=394153235]
 transform = Transform3D(0.7, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.3829329, 0.9782594, -0.50076663)
+transparent = false
 shaded = true
 texture = ExtResource("7_u1hgu")
 

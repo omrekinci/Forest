@@ -10,6 +10,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="ammosprite" type="Sprite3D" parent="." unique_id=2100342120]
 billboard = 1
+shaded = true
 texture = ExtResource("1_kp58d")
 
 [node name="ammoarea" type="Area3D" parent="ammosprite" unique_id=1619082468]

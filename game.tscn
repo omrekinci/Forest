@@ -47,7 +47,6 @@ size = Vector2(300, 300)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1503581476]
 transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
-visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=913211522]
@@ -112,7 +111,7 @@ player = NodePath("../Player")
 transform = Transform3D(-0.55258024, 0, 0.8334596, 0, 0.77396923, 0, -0.8334596, 0, -0.55258024, 11.235566, 0.7747457, -6.46274)
 
 [node name="Tree" parent="." unique_id=1320892409 instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.894278, 2.0114007, -8.292679)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.069663, 2.1036813, -4.5259156)
 
 [node name="Ammobox" parent="." unique_id=1200300365 instance=ExtResource("8_j5wjh")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 8.359601, 0.60492265, 0.65894246)
