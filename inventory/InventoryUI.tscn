@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://tvw5q5cbq2dy"]
+
+[ext_resource type="Script" uid="uid://6842qskgv2us" path="res://inventory/inventory_ui.gd" id="1_77we3"]
+[ext_resource type="Texture2D" uid="uid://diju3umv4lskc" path="res://redbull/redbull.png" id="2_fllb7"]
+
+[node name="InventoryUi" type="Control" unique_id=997707463]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_77we3")
+inventory_width = 5
+inventory_height = 3
+
+[node name="redbullitem" type="Sprite2D" parent="." unique_id=598854591]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_fllb7")
+
+[node name="Panel" type="Panel" parent="." unique_id=5637457]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 450.0
+offset_right = 740.0
+offset_bottom = 490.0
+
+[node name="GridContainer" type="GridContainer" parent="Panel" unique_id=422740999]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 5

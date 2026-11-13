@@ -8,5 +8,5 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.name == "BodyArea":
-		Numbers.energy += 25
+		Numbers.redbull_amount += 1
 		owner.queue_free()

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bt0mwgs6xi2bj" path="res://car/car.tscn" id="5_7jktm"]
 [ext_resource type="PackedScene" uid="uid://c56qtakwi12b3" path="res://ammo/ammobox.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://hcgqxdgussb5" path="res://redbull/redbull.tscn" id="9_vef74"]
+[ext_resource type="PackedScene" uid="uid://tvw5q5cbq2dy" path="res://inventory/InventoryUI.tscn" id="10_hve3p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vef74"]
 shader = ExtResource("1_eow3j")
@@ -133,3 +134,5 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.2020192, 0.49542266,
 
 [node name="Redbull3" parent="." unique_id=530914515 instance=ExtResource("9_vef74")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -4.478414, 0.49542266, 1.5108919)
+
+[node name="InventoryUi" parent="." unique_id=997707463 instance=ExtResource("10_hve3p")]

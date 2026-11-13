@@ -12,7 +12,8 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if Numbers.bullets > 0:
-			apply_recoil()
+			if Numbers.inventoryisopenned == false:
+				apply_recoil()
 func apply_recoil() -> void:
 	current_offset += recoil_offset
 	await get_tree().create_timer(0.05).timeout
