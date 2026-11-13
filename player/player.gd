@@ -39,6 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
+	Numbers.energy -= 0.005
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -60,9 +61,11 @@ func _physics_process(delta: float) -> void:
 
 	var is_sprinting = false
 	if Input.is_key_pressed(KEY_SHIFT) and is_moving and not has_stamina:
-		is_sprinting = true
+		if Numbers.energy > 0:
+			is_sprinting = true
 
 	if is_sprinting:
+		Numbers.energy -= 0.05
 		stamina = max(0.0, stamina - stamina_drain_speed * delta)
 		if stamina <= 0.0:
 			has_stamina = true

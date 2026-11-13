@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://hcgqxdgussb5"]
+
+[ext_resource type="Texture2D" uid="uid://diju3umv4lskc" path="res://redbull/redbull.png" id="1_51w1s"]
+[ext_resource type="Script" uid="uid://bkrpq2dfrwus0" path="res://redbull/redbull_area.gd" id="2_jokxo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2a8ig"]
+radius = 1.2163229
+
+[node name="Redbull" type="CharacterBody3D" unique_id=1609057062]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="RedbullSprite" type="Sprite3D" parent="." unique_id=1615795299]
+billboard = 1
+shaded = true
+texture = ExtResource("1_51w1s")
+
+[node name="RedbullArea" type="Area3D" parent="RedbullSprite" unique_id=1878031515]
+script = ExtResource("2_jokxo")
+
+[node name="RedbullCollision" type="CollisionShape3D" parent="RedbullSprite/RedbullArea" unique_id=2027949481]
+shape = SubResource("SphereShape3D_2a8ig")
+
+[connection signal="area_entered" from="RedbullSprite/RedbullArea" to="RedbullSprite/RedbullArea" method="_on_area_entered"]

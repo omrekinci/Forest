@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://6scybx10k4ub" path="res://monster/monster.tscn" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://bt0mwgs6xi2bj" path="res://car/car.tscn" id="5_7jktm"]
 [ext_resource type="PackedScene" uid="uid://c56qtakwi12b3" path="res://ammo/ammobox.tscn" id="8_j5wjh"]
+[ext_resource type="PackedScene" uid="uid://hcgqxdgussb5" path="res://redbull/redbull.tscn" id="9_vef74"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vef74"]
 shader = ExtResource("1_eow3j")
@@ -47,6 +48,7 @@ size = Vector2(300, 300)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1503581476]
 transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
+visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=913211522]
@@ -104,8 +106,9 @@ grow_horizontal = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Monster" parent="." unique_id=1321825330 node_paths=PackedStringArray("player") instance=ExtResource("3_feb5d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8681908, 2.1132798, -18.819395)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8681908, 2.1132798, 14.2337265)
 player = NodePath("../Player")
+initial_move_speed = 8.0
 
 [node name="Car" parent="." unique_id=265846686 instance=ExtResource("5_7jktm")]
 transform = Transform3D(-0.55258024, 0, 0.8334596, 0, 0.77396923, 0, -0.8334596, 0, -0.55258024, 11.235566, 0.7747457, -6.46274)
@@ -121,3 +124,12 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 5.264627, 0.60492265
 
 [node name="Ammobox3" parent="." unique_id=1768830038 instance=ExtResource("8_j5wjh")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.6323485, 0.60492265, 0.65894246)
+
+[node name="Redbull" parent="." unique_id=1609057062 instance=ExtResource("9_vef74")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.18702698, 0.49542266, -0.46195364)
+
+[node name="Redbull2" parent="." unique_id=1139568685 instance=ExtResource("9_vef74")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.2020192, 0.49542266, 0.8637719)
+
+[node name="Redbull3" parent="." unique_id=530914515 instance=ExtResource("9_vef74")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -4.478414, 0.49542266, 1.5108919)
