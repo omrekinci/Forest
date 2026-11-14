@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cop858cskiwwv"]
+
+[ext_resource type="Script" uid="uid://pap44o5niyu2" path="res://escmenu.gd" id="1_s03j3"]
+[ext_resource type="Texture2D" uid="uid://cfbwkdwpu6uc5" path="res://black.png" id="2_2grgg"]
+
+[node name="Escmenu" type="Control" unique_id=137668545]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s03j3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=722069630]
+layout_mode = 0
+offset_left = 1295.0
+offset_top = 147.0
+offset_right = 1841.0
+offset_bottom = 756.0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=777195459]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91768664, 0.8004455, 0.22988746, 1)
+theme_override_font_sizes/font_size = 180
+text = "Forest
+"
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=1062998532]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1502228656]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit to Main Menu"
+
+[node name="Yellow" type="Sprite2D" parent="." unique_id=1939835047]
+z_index = -1
+position = Vector2(1662.9999, 763)
+rotation = 0.2602068
+scale = Vector2(5.9722943, 34.536377)
+texture = ExtResource("2_2grgg")

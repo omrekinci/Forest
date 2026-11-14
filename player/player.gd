@@ -56,8 +56,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+func _is_menu_open() -> bool:
+	var menu := get_tree().get_first_node_in_group("esc_menu") as Control
+	return menu != null and menu.visible
+
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
+		return
+
+	if _is_menu_open():
+		# Zero horizontal velocity so the player stops sliding, while keeping gravity/sync alive
+		velocity.x = 0.0
+		velocity.z = 0.0
+		move_and_slide()
 		return
 
 	Numbers.energy -= 0.005
