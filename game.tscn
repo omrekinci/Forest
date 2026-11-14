@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c7mi5oq4wrx7p"]
 
-[ext_resource type="PackedScene" uid="uid://nu4w3ja6e1ff" path="res://player/player.tscn" id="1_80nbo"]
 [ext_resource type="Shader" uid="uid://dwvep5jgawkmo" path="res://sky.gdshader" id="1_eow3j"]
 [ext_resource type="Texture2D" uid="uid://d8jdeksnao0s" path="res://road.png" id="1_fc0e3"]
+[ext_resource type="Script" uid="uid://1b21j2l62b72" path="res://game.gd" id="1_hve3p"]
 [ext_resource type="PackedScene" uid="uid://d2dtaajh0b2c4" path="res://tree/Tree.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://4kqf2wo8fgmx" path="res://grassplaceholder.png" id="2_ryrav"]
 [ext_resource type="PackedScene" uid="uid://6scybx10k4ub" path="res://monster/monster.tscn" id="3_feb5d"]
@@ -41,15 +41,11 @@ size = Vector2(300, 300)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2a8ig"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7taos"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a8ig"]
-
-[node name="Node3D" type="Node3D" unique_id=1103386871]
+[node name="game" type="Node3D" unique_id=1103386871]
+script = ExtResource("1_hve3p")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1503581476]
 transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
-visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=913211522]
@@ -72,43 +68,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.372086, 0, 0, 0)
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_2a8ig")
 
-[node name="Player" parent="." unique_id=1159174860 instance=ExtResource("1_80nbo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.560064, 1, -5.3594885)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player" unique_id=368116434]
-mesh = SubResource("CapsuleMesh_7taos")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Player" unique_id=2049104192]
-shape = SubResource("CapsuleShape3D_2a8ig")
-
-[node name="Neck2" type="Node3D" parent="Player" unique_id=471347864]
-
-[node name="Camera3D" type="Camera3D" parent="Player/Neck2" unique_id=297418239]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6705221, 0)
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Player/Neck2" unique_id=1772148151]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1549604, 0.5252811)
-visible = false
-spot_range = 10.0
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="Player" unique_id=1531126213]
-visible = false
-
-[node name="ProgressBar" type="ProgressBar" parent="Player/CanvasLayer2" unique_id=389193340]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -600.0
-offset_top = 50.0
-offset_right = 600.0
-offset_bottom = 85.0
-grow_horizontal = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Monster" parent="." unique_id=1321825330 node_paths=PackedStringArray("player") instance=ExtResource("3_feb5d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8681908, 2.1132798, 14.2337265)
-player = NodePath("../Player")
+[node name="Monster" parent="." unique_id=1321825330 instance=ExtResource("3_feb5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.175674, 2.1132798, 54.673218)
 initial_move_speed = 8.0
 
 [node name="Car" parent="." unique_id=265846686 instance=ExtResource("5_7jktm")]
@@ -136,3 +97,9 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.2020192, 0.49542266,
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -4.478414, 0.49542266, 1.5108919)
 
 [node name="InventoryUi" parent="." unique_id=997707463 instance=ExtResource("10_hve3p")]
+
+[node name="Players" type="Node3D" parent="." unique_id=1975940581]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1176900980]
+_spawnable_scenes = PackedStringArray("uid://nu4w3ja6e1ff")
+spawn_path = NodePath("../Players")

@@ -1,25 +1,40 @@
 extends CharacterBody3D
 
-@export var walk_speed = 5.0
-@export var sprint_speed = 10
-@export var jump_speed = 4.5
-@export var mouse_sensitivity = 0.003
+@export var walk_speed := 5.0
+@export var sprint_speed := 10.0
+@export var jump_speed := 4.5
+@export var mouse_sensitivity := 0.003
 
-@export var normal_fov = 75.0
-@export var sprint_fov = 85.0
-@export var fov_change = 10.0
+@export var normal_fov := 75.0
+@export var sprint_fov := 85.0
+@export var fov_change := 10.0
 
-@export var max_stamina = 100.0
-@export var stamina_drain_speed = 25.0 
-@export var stamina_regen_speed = 15.0
-var stamina = 100.0
-var has_stamina = false
+@export var max_stamina := 100.0
+@export var stamina_drain_speed := 25.0
+@export var stamina_regen_speed := 15.0
+
+var stamina := 100.0
+var has_stamina := false
 
 @onready var neck: Node3D = $Neck
 @onready var camera: Camera3D = $Neck/Camera
 @onready var stamina_bar: ProgressBar = $CanvasLayer/StaminaBar
 
+func _enter_tree() -> void:
+	var peer_id := name.to_int()
+	if peer_id > 0:
+		set_multiplayer_authority(peer_id)
+		if has_node("MultiplayerSynchronizer"):
+			$MultiplayerSynchronizer.set_multiplayer_authority(peer_id)
+
 func _ready() -> void:
+	var is_local := is_multiplayer_authority()
+	$CanvasLayer.visible = is_local
+	camera.current = is_local
+
+	if not is_local:
+		return
+
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	stamina = max_stamina
 	if stamina_bar:
@@ -27,11 +42,14 @@ func _ready() -> void:
 		stamina_bar.value = stamina
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not is_multiplayer_authority():
+		return
+
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		neck.rotate_y(-event.relative.x * mouse_sensitivity)
 		camera.rotate_x(-event.relative.y * mouse_sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
-	
+
 	if event.is_action_pressed("ui_cancel"):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -39,6 +57,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
+
 	Numbers.energy -= 0.005
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -55,11 +76,11 @@ func _physics_process(delta: float) -> void:
 		input_dir.x -= 1
 	if Input.is_key_pressed(KEY_D) or Input.is_action_pressed("ui_right"):
 		input_dir.x += 1
-		
-	input_dir = input_dir.normalized()
-	var is_moving = input_dir.length() > 0
 
-	var is_sprinting = false
+	input_dir = input_dir.normalized()
+	var is_moving := input_dir.length() > 0
+
+	var is_sprinting := false
 	if Input.is_key_pressed(KEY_SHIFT) and is_moving and not has_stamina:
 		if Numbers.energy > 0:
 			is_sprinting = true
@@ -78,9 +99,9 @@ func _physics_process(delta: float) -> void:
 		stamina_bar.value = stamina
 		stamina_bar.visible = stamina < max_stamina
 
-	var current_speed = walk_speed
-	var target_fov = normal_fov
-	
+	var current_speed := walk_speed
+	var target_fov := normal_fov
+
 	if is_sprinting:
 		current_speed = sprint_speed
 		target_fov = sprint_fov
@@ -88,7 +109,7 @@ func _physics_process(delta: float) -> void:
 	camera.fov = lerpf(camera.fov, target_fov, delta * fov_change)
 
 	var direction := (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
+
 	if direction:
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed

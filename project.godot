@@ -11,13 +11,24 @@ config_version=5
 [application]
 
 config/name="Forest"
-run/main_scene="res://game.tscn"
+run/main_scene="uid://y1pnkj4or170"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Numbers="*uid://q7v1r372vsfq"
+SessionManager="*uid://cwwq170ro2iqo"
+EOSGRuntime="*uid://7saywdx0ipep"
+HPlatform="*uid://yl2muvqrdiud"
+HAuth="*uid://786t1jiowvvg"
+HAchievements="*uid://bis404dty5u5c"
+HFriends="*uid://uumqbey8ji5t"
+HStats="*uid://dbckdip83oone"
+HLeaderboards="*uid://b06khhf20mplm"
+HLobbies="*uid://6iqvm33q0tb1"
+HP2P="*uid://u6ae5fpm6l8q"
+HSessions="*uid://bieh2rxxahuu2"
 
 [display]
 
@@ -27,7 +38,7 @@ window/size/mode=3
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/epic-online-services-godot/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
 
 [input]
 

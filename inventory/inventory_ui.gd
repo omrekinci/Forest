@@ -3,8 +3,8 @@ extends Control
 @export var inventory_width: int = 4
 @export var inventory_height: int = 4
 
-@onready var grid_container: GridContainer = $Panel/GridContainer
-@onready var redbull_item: Sprite2D = $redbullitem
+@onready var grid_container = $Panel/GridContainer
+@onready var redbull_item = $redbullitem
 
 var redbull_texture: Texture2D
 
@@ -48,6 +48,8 @@ func consume_hovered_redbull() -> void:
 	var item = inventory_data[hovered_slot_index]
 	if item != null and item.get("item_name") == "Red Bull":
 		Numbers.energy += 25
+		if Numbers.energy > 100:
+			Numbers.energy = 100
 		inventory_data[hovered_slot_index] = null
 		Numbers.redbull_amount = max(0, Numbers.redbull_amount - 1)
 		hovered_slot_index = -1

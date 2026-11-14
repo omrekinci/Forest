@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bsjmt6jd77duw" path="res://player/body_area.gd" id="2_g6k8r"]
 [ext_resource type="Script" uid="uid://chfepiljgtt8n" path="res://player/gunarea.gd" id="2_rkbax"]
 [ext_resource type="Texture2D" uid="uid://d1bs48jfs7kj7" path="res://player/gun.png" id="3_g1dw6"]
+[ext_resource type="Script" uid="uid://cn2jji8uqgou" path="res://player/ip.gd" id="3_hg6s5"]
 [ext_resource type="AudioStream" uid="uid://bho0f8kx17awn" path="res://player/Gunblast.wav" id="3_qjkh3"]
 [ext_resource type="Script" uid="uid://bvmgdyhjrxci7" path="res://player/camera.gd" id="4_rgyib"]
 [ext_resource type="Script" uid="uid://de5i67mji82up" path="res://player/gun.gd" id="4_yw30f"]
@@ -36,6 +37,16 @@ border_blend = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_2a8ig"]
 size = Vector3(2.3702393, 1.788208, 6.2022705)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rgyib"]
+properties/0/path = NodePath("Neck:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7taos"]
+
 [node name="Player" type="CharacterBody3D" unique_id=1159174860]
 script = ExtResource("1_4flbx")
 
@@ -50,7 +61,6 @@ offset_right = 70.0
 offset_bottom = 1050.0
 theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
 theme_override_styles/fill = SubResource("StyleBoxFlat_hg6s5")
-rounded = true
 fill_mode = 3
 show_percentage = false
 
@@ -78,6 +88,16 @@ offset_top = 43.0
 offset_right = 74.0
 offset_bottom = 88.0
 theme_override_font_sizes/font_size = 24
+
+[node name="IP" type="Label" parent="CanvasLayer" unique_id=1023345203]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_right = -30.0
+offset_bottom = 23.0
+grow_horizontal = 0
+script = ExtResource("3_hg6s5")
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=1570752264]
 mesh = SubResource("CapsuleMesh_7taos")
@@ -122,6 +142,12 @@ shape = SubResource("BoxShape3D_2a8ig")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03184843, -0.16850567)
 light_energy = 5.0
 spot_range = 15.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1940221244]
+replication_config = SubResource("SceneReplicationConfig_rgyib")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1698393178]
+shape = SubResource("CapsuleShape3D_7taos")
 
 [connection signal="area_entered" from="Body/BodyArea" to="Body/BodyArea" method="_on_area_entered"]
 [connection signal="area_entered" from="Neck/Camera/gunarea" to="Neck/Camera/gunarea" method="_on_area_entered"]

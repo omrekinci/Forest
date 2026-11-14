@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var target: Node3D
-@export var rotation_speed: float = 8.0
+@export var rotation_speed = 8.0
 
 func _process(delta: float) -> void:
 	if target:
