@@ -10,4 +10,4 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.name == "MonsterArea":
-		get_tree().quit()
+		Numbers.health -= 1
