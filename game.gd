@@ -1,8 +1,6 @@
 extends Node3D
 
-# Update this path if your Player scene is inside a subfolder (e.g. "res://scenes/player.tscn")
 const PLAYER_SCENE: PackedScene = preload("res://player/player.tscn")
-
 @onready var players_container: Node3D = $Players
 
 func _ready() -> void:
@@ -10,10 +8,8 @@ func _ready() -> void:
 		multiplayer.peer_connected.connect(_spawn_player)
 		multiplayer.peer_disconnected.connect(_despawn_player)
 
-		# Spawn the host (or single-player) character (peer ID 1)
 		_spawn_player(1)
 
-		# Spawn any clients that connected before this scene finished loading
 		for peer_id in multiplayer.get_peers():
 			_spawn_player(peer_id)
 

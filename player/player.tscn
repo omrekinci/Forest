@@ -77,6 +77,13 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_8t03j")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
+[node name="money" type="Label" parent="CanvasLayer" unique_id=1229704575]
+offset_left = 5.0
+offset_top = 100.0
+offset_right = 45.0
+offset_bottom = 167.0
+theme_override_font_sizes/font_size = 48
+
 [node name="bullets" type="Label" parent="CanvasLayer" unique_id=2074635545]
 offset_right = 40.0
 offset_bottom = 23.0

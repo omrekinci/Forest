@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bgewhfkpetrtg"]
+
+[ext_resource type="Texture2D" uid="uid://bl1a1l5nwnxs" path="res://money/5.png" id="1_adna3"]
+[ext_resource type="Script" uid="uid://dvfn3lhjv11vg" path="res://money/moneyarea.gd" id="2_4gluc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2a8ig"]
+
+[node name="Money" type="CharacterBody3D" unique_id=544108]
+
+[node name="money" type="Sprite3D" parent="." unique_id=1322533708]
+transform = Transform3D(0.07, 0, 0, 0, 8.3474166e-10, 0.07, 0, -0.07, 8.3474166e-10, 0, 0, 0)
+shaded = true
+texture = ExtResource("1_adna3")
+
+[node name="moneyarea" type="Area3D" parent="." unique_id=788993122]
+script = ExtResource("2_4gluc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="moneyarea" unique_id=717567133]
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, 0, 0, 0)
+shape = SubResource("SphereShape3D_2a8ig")
+
+[connection signal="area_entered" from="moneyarea" to="moneyarea" method="_on_area_entered"]

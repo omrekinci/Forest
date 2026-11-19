@@ -7,4 +7,7 @@ var health = 1
 
 var redbull_amount = 0
 
+var money = 0
+
 var inventoryisopenned = false
+var shopisopened = false

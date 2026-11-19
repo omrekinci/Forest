@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@onready var money = $money
 @onready var bullet_amount = $bullets
 @onready var ammo = $ammo
 
@@ -11,6 +12,7 @@ func _ready() -> void:
 		
 
 func _process(delta: float) -> void:
+	money.text = "$" + str(Numbers.money)
 	bullet_amount.text = str(Numbers.bullets)
 	ammo.text = " / " + str(Numbers.ammo)
 	energybar.value = Numbers.energy

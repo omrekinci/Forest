@@ -14,7 +14,7 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if Numbers.bullets > 0 and Numbers.inventoryisopenned == false:
+		if Numbers.bullets > 0 and Numbers.inventoryisopenned == false and Numbers.shopisopened == false:
 			_rpc_apply_recoil.rpc()
 
 @rpc("any_peer", "call_local", "reliable")

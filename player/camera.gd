@@ -26,4 +26,7 @@ func gunlightflash() -> void:
 		gunlight.hide()
 
 func _process(delta: float) -> void:
-	pass
+	if Numbers.shopisopened == true:
+		gun.hide()
+	elif Numbers.shopisopened == false:
+		gun.show()

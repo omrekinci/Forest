@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://w0oqosva0hq4"]
+
+[ext_resource type="Texture2D" uid="uid://bq7wqa8os7lyr" path="res://clarksstuff/stand.png" id="1_cwkrg"]
+[ext_resource type="Texture2D" uid="uid://bxq1l4tcng0fa" path="res://clarksstuff/clark.png" id="2_46l3f"]
+[ext_resource type="Script" uid="uid://qxa2i43rprfw" path="res://clarksstuff/shop_area.gd" id="3_46l3f"]
+[ext_resource type="Script" uid="uid://biyacvqy1gm0c" path="res://clarksstuff/shop.gd" id="4_ade2q"]
+[ext_resource type="Texture2D" uid="uid://diju3umv4lskc" path="res://redbull/redbull.png" id="4_uybw0"]
+[ext_resource type="Texture2D" uid="uid://br6ttv3i43huj" path="res://ammo/ammobox.png" id="6_6o0o0"]
+[ext_resource type="Texture2D" uid="uid://c3738ora4a7ur" path="res://clarksstuff/arrow2.png" id="7_6o0o0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2a8ig"]
+size = Vector3(1.4362793, 1.157898, 0.048309326)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e2grr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2a8ig"]
+
+[node name="Clarksstuff" type="CharacterBody3D" unique_id=286981668]
+
+[node name="stand collision" type="CollisionShape3D" parent="." unique_id=136288932]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.032332838, 0.47873974, 0.4500425)
+shape = SubResource("BoxShape3D_2a8ig")
+
+[node name="stand" type="Sprite3D" parent="." unique_id=635561970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.26360202)
+shaded = true
+texture = ExtResource("1_cwkrg")
+
+[node name="clark" type="Sprite3D" parent="." unique_id=1705295809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2375145)
+billboard = 2
+shaded = true
+texture = ExtResource("2_46l3f")
+
+[node name="ShopArea" type="Area3D" parent="." unique_id=695267839]
+script = ExtResource("3_46l3f")
+
+[node name="shopcam" type="Camera3D" parent="ShopArea" unique_id=338792997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20329952, 0.7889073)
+
+[node name="redbull" type="Sprite3D" parent="ShopArea" unique_id=1280274520]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.31693774, 0.07461724, 0.16861486)
+billboard = 2
+shaded = true
+texture = ExtResource("4_uybw0")
+
+[node name="ammobox" type="Sprite3D" parent="ShopArea" unique_id=66737154]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0.38338026, 0.0341738, 0.119689345)
+billboard = 2
+shaded = true
+texture = ExtResource("6_6o0o0")
+
+[node name="shop" type="Control" parent="ShopArea" unique_id=785499994]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_ade2q")
+
+[node name="arrowredbull" type="Sprite2D" parent="ShopArea/shop" unique_id=1981494783]
+position = Vector2(602, 350)
+rotation = 1.5707964
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_6o0o0")
+
+[node name="arrowammo" type="Sprite2D" parent="ShopArea/shop" unique_id=1726211439]
+position = Vector2(1280, 350)
+rotation = 1.5707964
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_6o0o0")
+
+[node name="ShopCollision" type="CollisionShape3D" parent="ShopArea" unique_id=1089941548]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
+shape = SubResource("SphereShape3D_e2grr")
+
+[node name="SafeZone" type="Area3D" parent="." unique_id=1003510353]
+
+[node name="SafeCollision" type="CollisionShape3D" parent="SafeZone" unique_id=1890471849]
+transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0, 0, 0)
+shape = SubResource("SphereShape3D_2a8ig")
+
+[connection signal="area_entered" from="ShopArea" to="ShopArea" method="_on_area_entered"]
+[connection signal="area_exited" from="ShopArea" to="ShopArea" method="_on_area_exited"]

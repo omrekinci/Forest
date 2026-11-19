@@ -19,7 +19,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			shoot()
 
 	if Input.is_key_pressed(KEY_R):
-		if Numbers.inventoryisopenned == false:
+		if Numbers.inventoryisopenned == false and Numbers.shopisopened == false:
 			if Numbers.bullets == 0 and Numbers.ammo >= 2:
 				Numbers.bullets += 2
 				Numbers.ammo -= 2
@@ -43,7 +43,7 @@ func shoot() -> void:
 	if not is_multiplayer_authority():
 		return
 
-	if Numbers.inventoryisopenned == false and Numbers.bullets > 0:
+	if Numbers.inventoryisopenned == false and Numbers.shopisopened == false and Numbers.bullets > 0:
 		Numbers.bullets -= 1
 		_rpc_shoot_effects.rpc()
 

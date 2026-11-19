@@ -58,64 +58,73 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
-	if not is_multiplayer_authority():
-		return
+	if Numbers.energy <= 0:
+		Numbers.energy = 0
+	
+	if Numbers.money <= 0:
+		Numbers.money = 0
+	
+	if Numbers.shopisopened == false:
+		if not is_multiplayer_authority():
+			return
 
-	Numbers.energy -= 0.005
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+		Numbers.energy -= 0.005
+		if not is_on_floor():
+			velocity += get_gravity() * delta
 
-	if (Input.is_key_pressed(KEY_SPACE) or Input.is_action_just_pressed("ui_accept")) and is_on_floor():
-		velocity.y = jump_speed
+		if (Input.is_key_pressed(KEY_SPACE) or Input.is_action_just_pressed("ui_accept")) and is_on_floor():
+			velocity.y = jump_speed
 
-	var input_dir := Vector2.ZERO
-	if Input.is_key_pressed(KEY_W) or Input.is_action_pressed("ui_up"):
-		input_dir.y -= 1
-	if Input.is_key_pressed(KEY_S) or Input.is_action_pressed("ui_down"):
-		input_dir.y += 1
-	if Input.is_key_pressed(KEY_A) or Input.is_action_pressed("ui_left"):
-		input_dir.x -= 1
-	if Input.is_key_pressed(KEY_D) or Input.is_action_pressed("ui_right"):
-		input_dir.x += 1
+		var input_dir := Vector2.ZERO
+		if Input.is_key_pressed(KEY_W) or Input.is_action_pressed("ui_up"):
+			input_dir.y -= 1
+		if Input.is_key_pressed(KEY_S) or Input.is_action_pressed("ui_down"):
+			input_dir.y += 1
+		if Input.is_key_pressed(KEY_A) or Input.is_action_pressed("ui_left"):
+			input_dir.x -= 1
+		if Input.is_key_pressed(KEY_D) or Input.is_action_pressed("ui_right"):
+			input_dir.x += 1
 
-	input_dir = input_dir.normalized()
-	var is_moving := input_dir.length() > 0
+		input_dir = input_dir.normalized()
+		var is_moving := input_dir.length() > 0
 
-	var is_sprinting := false
-	if Input.is_key_pressed(KEY_SHIFT) and is_moving and not has_stamina:
-		if Numbers.energy > 0:
-			is_sprinting = true
+		var is_sprinting := false
+		if Input.is_key_pressed(KEY_SHIFT) and is_moving and not has_stamina:
+			if Numbers.energy > 0:
+				is_sprinting = true
 
-	if is_sprinting:
-		Numbers.energy -= 0.05
-		stamina = max(0.0, stamina - stamina_drain_speed * delta)
-		if stamina <= 0.0:
-			has_stamina = true
-	else:
-		stamina = min(max_stamina, stamina + stamina_regen_speed * delta)
-		if has_stamina and stamina >= max_stamina * 0.2:
-			has_stamina = false
+		if is_sprinting:
+			Numbers.energy -= 0.05
+			stamina = max(0.0, stamina - stamina_drain_speed * delta)
+			if stamina <= 0.0:
+				has_stamina = true
+		else:
+			stamina = min(max_stamina, stamina + stamina_regen_speed * delta)
+			if has_stamina and stamina >= max_stamina * 0.2:
+				has_stamina = false
 
-	if stamina_bar:
-		stamina_bar.value = stamina
-		stamina_bar.visible = stamina < max_stamina
+		if stamina_bar:
+			stamina_bar.value = stamina
+			stamina_bar.visible = stamina < max_stamina
 
-	var current_speed := walk_speed
-	var target_fov := normal_fov
+		var current_speed := walk_speed
+		var target_fov := normal_fov
 
-	if is_sprinting:
-		current_speed = sprint_speed
-		target_fov = sprint_fov
+		if is_sprinting:
+			current_speed = sprint_speed
+			target_fov = sprint_fov
 
-	camera.fov = lerpf(camera.fov, target_fov, delta * fov_change)
+		camera.fov = lerpf(camera.fov, target_fov, delta * fov_change)
 
-	var direction := (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		var direction := (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-	if direction:
-		velocity.x = direction.x * current_speed
-		velocity.z = direction.z * current_speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, current_speed)
-		velocity.z = move_toward(velocity.z, 0, current_speed)
+		if direction:
+			velocity.x = direction.x * current_speed
+			velocity.z = direction.z * current_speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, current_speed)
+			velocity.z = move_toward(velocity.z, 0, current_speed)
 
-	move_and_slide()
+		move_and_slide()
+	elif Numbers.shopisopened == true:
+		pass

@@ -188,3 +188,13 @@ func stun() -> void:
 		return
 	is_stunned = false
 	_enter_fleeing()
+
+
+func _on_monster_area_area_entered(area: Area3D) -> void:
+	if area.name == "SafeZone":
+		stun()
+
+
+func _on_monster_area_area_exited(area: Area3D) -> void:
+	if area.name == "SafeZone":
+		stun()
