@@ -13,12 +13,17 @@ extends CharacterBody3D
 @export var stamina_drain_speed := 25.0
 @export var stamina_regen_speed := 15.0
 
+@export var current_avatar := 1
+
 var stamina := 100.0
 var has_stamina := false
 
 @onready var neck: Node3D = $Neck
 @onready var camera: Camera3D = $Neck/Camera
 @onready var stamina_bar: ProgressBar = $CanvasLayer/StaminaBar
+@onready var sprite_front = $Neck/front
+@onready var sprite_back = $Neck/back
+@onready var sprite_side = $Neck/side
 
 func _enter_tree() -> void:
 	var peer_id := name.to_int()
@@ -33,14 +38,17 @@ func _ready() -> void:
 	$CanvasLayer.visible = is_local
 	camera.current = is_local
 
-	if not is_local:
-		return
+	if is_local:
+		rpc("set_avatar", Numbers.avatar)
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		stamina = max_stamina
+		if stamina_bar:
+			stamina_bar.max_value = max_stamina
+			stamina_bar.value = stamina
 
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	stamina = max_stamina
-	if stamina_bar:
-		stamina_bar.max_value = max_stamina
-		stamina_bar.value = stamina
+@rpc("any_peer", "call_local", "reliable")
+func set_avatar(new_avatar: int) -> void:
+	current_avatar = new_avatar
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():
@@ -56,6 +64,46 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _process(_delta: float) -> void:
+	var current_camera := get_viewport().get_camera_3d()
+	if not current_camera:
+		return
+
+	var to_cam = current_camera.global_position - global_position
+	to_cam.y = 0
+	to_cam = to_cam.normalized()
+
+	var forward = -neck.global_transform.basis.z
+	forward.y = 0
+	forward = forward.normalized()
+
+	var right = neck.global_transform.basis.x
+	right.y = 0
+	right = right.normalized()
+
+	var fwd_dot = forward.dot(to_cam)
+	var right_dot = right.dot(to_cam)
+
+	sprite_front.visible = false
+	sprite_back.visible = false
+	sprite_side.visible = false
+
+	var active_sprite = sprite_front
+	if fwd_dot > 0.5:
+		sprite_front.visible = true
+		active_sprite = sprite_front
+	elif fwd_dot < -0.5:
+		sprite_back.visible = true
+		active_sprite = sprite_back
+	else:
+		sprite_side.visible = true
+		sprite_side.flip_h = right_dot < 0
+		active_sprite = sprite_side
+
+	var anim_name = str(current_avatar)
+	if active_sprite.has_method("play") and active_sprite.animation != anim_name:
+		active_sprite.play(anim_name)
 
 func _physics_process(delta: float) -> void:
 	if Numbers.energy <= 0:

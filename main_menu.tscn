@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://y1pnkj4or170"]
 
 [ext_resource type="Script" uid="uid://dqw2sdlire8cs" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://c4kmfdl7fm84t" path="res://player/bob.png" id="2_7vrkn"]
+[ext_resource type="Script" uid="uid://depx7uy0bqyed" path="res://avatar_selector.gd" id="2_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://b60egju8jd2e8" path="res://player/çınar.png" id="3_qe12f"]
+[ext_resource type="Texture2D" uid="uid://c60xblsoihuo5" path="res://player/john.png" id="5_8qtwp"]
+[ext_resource type="Texture2D" uid="uid://uvbrleshtjkh" path="res://player/simon.png" id="6_dy7ct"]
 
 [node name="MainMenu" type="Control" unique_id=1813514998]
 layout_mode = 3
@@ -40,7 +45,50 @@ theme_override_font_sizes/font_size = 24
 text = "127.0.0.1"
 alignment = 1
 
+[node name="AvatarButton" type="Button" parent="VBoxContainer" unique_id=767468101]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Choose Avatar"
+
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=395769554]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit"
+
+[node name="AvatarSelector" type="Control" parent="." unique_id=672419340]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_nlkkf")
+
+[node name="çınar" type="Button" parent="AvatarSelector" unique_id=1789161229]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 430.0
+offset_right = 990.0
+offset_bottom = 570.0
+icon = ExtResource("3_qe12f")
+
+[node name="bob" type="Button" parent="AvatarSelector" unique_id=1041115576]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 230.0
+offset_right = 990.0
+offset_bottom = 370.0
+icon = ExtResource("2_7vrkn")
+
+[node name="john" type="Button" parent="AvatarSelector" unique_id=933176976]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 230.0
+offset_right = 1400.0
+offset_bottom = 370.0
+icon = ExtResource("5_8qtwp")
+
+[node name="simon" type="Button" parent="AvatarSelector" unique_id=3709109]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 430.0
+offset_right = 1400.0
+offset_bottom = 570.0
+icon = ExtResource("6_dy7ct")
