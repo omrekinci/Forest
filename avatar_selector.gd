@@ -10,21 +10,18 @@ func _ready() -> void:
 	avatar2.pressed.connect(av2)
 	avatar3.pressed.connect(av3)
 	avatar4.pressed.connect(av4)
-	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func av1():
 	Numbers.avatar = 1
-	
+
 func av2():
 	Numbers.avatar = 2
-	
+
 func av3():
 	Numbers.avatar = 3
-	
+
 func av4():
 	Numbers.avatar = 4

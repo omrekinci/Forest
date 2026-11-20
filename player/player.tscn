@@ -204,6 +204,11 @@ properties/1/replication_mode = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7taos"]
 
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_2a8ig"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_2a8ig"]
+mix_rate = 16000.0
+
 [node name="Player" type="CharacterBody3D" unique_id=1159174860]
 script = ExtResource("1_4flbx")
 
@@ -331,6 +336,14 @@ replication_config = SubResource("SceneReplicationConfig_rgyib")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1698393178]
 shape = SubResource("CapsuleShape3D_7taos")
+
+[node name="MicInput" type="AudioStreamPlayer" parent="." unique_id=581957376]
+stream = SubResource("AudioStreamMicrophone_2a8ig")
+bus = &"Record"
+
+[node name="VoiceOutput" type="AudioStreamPlayer3D" parent="." unique_id=1966014533]
+stream = SubResource("AudioStreamGenerator_2a8ig")
+max_distance = 22.5
 
 [connection signal="area_entered" from="Body/BodyArea" to="Body/BodyArea" method="_on_area_entered"]
 [connection signal="area_entered" from="Neck/Camera/gunarea" to="Neck/Camera/gunarea" method="_on_area_entered"]

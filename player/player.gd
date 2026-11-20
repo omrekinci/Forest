@@ -13,7 +13,9 @@ extends CharacterBody3D
 @export var stamina_drain_speed := 25.0
 @export var stamina_regen_speed := 15.0
 
-@export var current_avatar := 1
+@export var current_avatar := 1:
+	set(value):
+		current_avatar = value
 
 var stamina := 100.0
 var has_stamina := false
@@ -24,6 +26,13 @@ var has_stamina := false
 @onready var sprite_front = $Neck/front
 @onready var sprite_back = $Neck/back
 @onready var sprite_side = $Neck/side
+@onready var mic_input: AudioStreamPlayer = $MicInput
+@onready var voice_output: AudioStreamPlayer3D = $VoiceOutput
+
+var capture_effect: AudioEffectCapture
+var playback: AudioStreamGeneratorPlayback
+const PACKET_FRAME_SIZE: int = 512
+const VOICE_THRESHOLD: float = 0.01
 
 func _enter_tree() -> void:
 	var peer_id := name.to_int()
@@ -38,17 +47,35 @@ func _ready() -> void:
 	$CanvasLayer.visible = is_local
 	camera.current = is_local
 
+	voice_output.play()
+	playback = voice_output.get_stream_playback() as AudioStreamGeneratorPlayback
+
 	if is_local:
-		rpc("set_avatar", Numbers.avatar)
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		stamina = max_stamina
 		if stamina_bar:
 			stamina_bar.max_value = max_stamina
 			stamina_bar.value = stamina
 
+		var record_bus_idx = AudioServer.get_bus_index("Record")
+		capture_effect = AudioServer.get_bus_effect(record_bus_idx, 0) as AudioEffectCapture
+		mic_input.play()
+		capture_effect.clear_buffer()
+
+		rpc_id(1, "_register_my_avatar", multiplayer.get_unique_id(), Numbers.avatar)
+
 @rpc("any_peer", "call_local", "reliable")
-func set_avatar(new_avatar: int) -> void:
-	current_avatar = new_avatar
+func _register_my_avatar(peer_id: int, av_id: int) -> void:
+	if multiplayer.is_server():
+		Numbers.player_avatars[peer_id] = av_id
+		rpc("_sync_all_avatars", Numbers.player_avatars)
+
+@rpc("any_peer", "call_local", "reliable")
+func _sync_all_avatars(avatar_dict: Dictionary) -> void:
+	Numbers.player_avatars = avatar_dict
+	var peer_id = name.to_int()
+	if Numbers.player_avatars.has(peer_id):
+		current_avatar = Numbers.player_avatars[peer_id]
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():
@@ -66,6 +93,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(_delta: float) -> void:
+	if is_multiplayer_authority() and capture_effect != null:
+		while capture_effect.can_get_buffer(PACKET_FRAME_SIZE):
+			var buffer: PackedVector2Array = capture_effect.get_buffer(PACKET_FRAME_SIZE)
+			if _is_above_threshold(buffer):
+				_transmit_voice.rpc(buffer)
+
+	var peer_id = name.to_int()
+	if Numbers.player_avatars.has(peer_id):
+		current_avatar = Numbers.player_avatars[peer_id]
+
 	var current_camera := get_viewport().get_camera_3d()
 	if not current_camera:
 		return
@@ -104,6 +141,19 @@ func _process(_delta: float) -> void:
 	var anim_name = str(current_avatar)
 	if active_sprite.has_method("play") and active_sprite.animation != anim_name:
 		active_sprite.play(anim_name)
+
+func _is_above_threshold(buffer: PackedVector2Array) -> bool:
+	for frame in buffer:
+		if abs(frame.x) > VOICE_THRESHOLD or abs(frame.y) > VOICE_THRESHOLD:
+			return true
+	return false
+
+@rpc("authority", "call_remote", "unreliable")
+func _transmit_voice(audio_data: PackedVector2Array) -> void:
+	if playback == null:
+		return
+	if playback.can_push_buffer(audio_data.size()):
+		playback.push_buffer(audio_data)
 
 func _physics_process(delta: float) -> void:
 	if Numbers.energy <= 0:

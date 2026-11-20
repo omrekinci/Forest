@@ -13,3 +13,4 @@ var inventoryisopenned = false
 var shopisopened = false
 
 var avatar = 1
+var player_avatars 	= {}

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dqw2sdlire8cs" path="res://main_menu.gd" id="1_06t4h"]
 [ext_resource type="Texture2D" uid="uid://c4kmfdl7fm84t" path="res://player/bob.png" id="2_7vrkn"]
 [ext_resource type="Script" uid="uid://depx7uy0bqyed" path="res://avatar_selector.gd" id="2_nlkkf"]
+[ext_resource type="Script" uid="uid://6fkcukiduybp" path="res://mic_select_button.gd" id="2_qe12f"]
 [ext_resource type="Texture2D" uid="uid://b60egju8jd2e8" path="res://player/çınar.png" id="3_qe12f"]
 [ext_resource type="Texture2D" uid="uid://c60xblsoihuo5" path="res://player/john.png" id="5_8qtwp"]
 [ext_resource type="Texture2D" uid="uid://uvbrleshtjkh" path="res://player/simon.png" id="6_dy7ct"]
@@ -49,6 +50,12 @@ alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Choose Avatar"
+
+[node name="MicSelectButton" type="OptionButton" parent="VBoxContainer" unique_id=1412994937]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+alignment = 1
+script = ExtResource("2_qe12f")
 
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=395769554]
 layout_mode = 2
