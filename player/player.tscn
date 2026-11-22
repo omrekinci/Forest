@@ -300,6 +300,7 @@ animation = &"4"
 
 [node name="Camera" type="Camera3D" parent="Neck" unique_id=1710217290]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6705221, 0)
+far = 100.0
 script = ExtResource("4_rgyib")
 
 [node name="Gun" type="Sprite3D" parent="Neck/Camera" unique_id=440286558]

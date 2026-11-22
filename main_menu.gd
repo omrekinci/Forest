@@ -8,6 +8,8 @@ extends Control
 
 @onready var avatar_selector = $AvatarSelector
 
+@onready var mainmenusprite = $mainmenu
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	host_button.pressed.connect(SessionManager.host_game)
@@ -16,6 +18,8 @@ func _ready() -> void:
 	quit_button.pressed.connect(get_tree().quit)
 	
 	avatar_selector.visible = false
+	
+	mainmenusprite.play("default")
 
 func _on_join_pressed() -> void:
 	var address := address_input.text.strip_edges()

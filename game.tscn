@@ -5,14 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://d2dtaajh0b2c4" path="res://tree/Tree.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://b7x5f2cmf4ejg" path="res://monster/grass3.png" id="4_iotsf"]
 [ext_resource type="PackedScene" uid="uid://bt0mwgs6xi2bj" path="res://car/car.tscn" id="5_7jktm"]
-[ext_resource type="PackedScene" uid="uid://c56qtakwi12b3" path="res://ammo/ammobox.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://cj3urhkgglql3" path="res://DeathScreen.tscn" id="9_iotsf"]
-[ext_resource type="PackedScene" uid="uid://hcgqxdgussb5" path="res://redbull/redbull.tscn" id="9_vef74"]
 [ext_resource type="PackedScene" uid="uid://tvw5q5cbq2dy" path="res://inventory/InventoryUI.tscn" id="10_hve3p"]
 [ext_resource type="PackedScene" uid="uid://cop858cskiwwv" path="res://escmenu.tscn" id="10_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://csthwmhu4oso1" path="res://monster/road2.png" id="12_iotsf"]
+[ext_resource type="PackedScene" uid="uid://6scybx10k4ub" path="res://monster/monster.tscn" id="12_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://w0oqosva0hq4" path="res://clarksstuff/clarksstuff.tscn" id="13_lc2xo"]
-[ext_resource type="PackedScene" uid="uid://b0dqxqjdhfity" path="res://money/moneyscene.tscn" id="14_215e1"]
+[ext_resource type="PackedScene" uid="uid://cihxbcwye5rs2" path="res://forest.tscn" id="14_7sc4i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7taos"]
+size = Vector3(100, 1, 800)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vef74"]
 shader = ExtResource("1_eow3j")
@@ -48,9 +50,12 @@ size = Vector2(2, 200)
 [node name="game" type="Node3D" unique_id=1103386871]
 script = ExtResource("1_hve3p")
 
+[node name="path" type="MeshInstance3D" parent="." unique_id=634071768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.372086, 0, -68.13689, 1612.1605)
+mesh = SubResource("BoxMesh_7taos")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1503581476]
 transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
-visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=913211522]
@@ -70,24 +75,6 @@ transform = Transform3D(-0.55258024, 0, 0.8334596, 0, 0.77396923, 0, -0.8334596,
 
 [node name="Tree" parent="." unique_id=1320892409 instance=ExtResource("2_e2o6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.069663, 1.37692, -4.5259156)
-
-[node name="Ammobox" parent="." unique_id=1200300365 instance=ExtResource("8_j5wjh")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 8.788875, -2.1388783, 74.40553)
-
-[node name="Ammobox2" parent="." unique_id=1375510273 instance=ExtResource("8_j5wjh")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 5.264627, 0.60492265, 0.65894246)
-
-[node name="Ammobox3" parent="." unique_id=1768830038 instance=ExtResource("8_j5wjh")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.6323485, 0.60492265, 24.152912)
-
-[node name="Redbull" parent="." unique_id=1609057062 instance=ExtResource("9_vef74")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.18702698, 0.49542266, -0.46195364)
-
-[node name="Redbull2" parent="." unique_id=1139568685 instance=ExtResource("9_vef74")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.287384, 1.4999411, 4.646362)
-
-[node name="Redbull3" parent="." unique_id=530914515 instance=ExtResource("9_vef74")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.7135253, -1.2010343, 35.809147)
 
 [node name="DeathScreen" parent="." unique_id=569119139 instance=ExtResource("9_iotsf")]
 
@@ -109,5 +96,33 @@ mesh = SubResource("PlaneMesh_pielt")
 [node name="Clarksstuff" parent="." unique_id=286981668 instance=ExtResource("13_lc2xo")]
 transform = Transform3D(-0.63601863, 0, -1.3584846, 0, 1.5, 0, 1.3584846, 0, -0.63601863, 13.145292, 0.6910934, -1.5945039)
 
-[node name="Moneyscene" parent="." unique_id=308435765 instance=ExtResource("14_215e1")]
-transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 8.272457, 0.021551967, 29.501038)
+[node name="Forest" parent="." unique_id=649987834 instance=ExtResource("14_7sc4i")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.4595647, 0.6065774, 27.621197)
+
+[node name="Forest2" parent="." unique_id=1446064423 instance=ExtResource("14_7sc4i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.3944016, 0.6065774, 106.39076)
+
+[node name="Forest3" parent="." unique_id=402802124 instance=ExtResource("14_7sc4i")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.4595647, 0.6065774, 1111.108)
+
+[node name="Forest4" parent="." unique_id=204627928 instance=ExtResource("14_7sc4i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.3944016, 0.6065774, 1189.8776)
+
+[node name="Label3D" type="Label3D" parent="." unique_id=839252025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6094143, -44.342194)
+text = "Wrong Way :P"
+font_size = 64
+
+[node name="Label3D2" type="Label3D" parent="." unique_id=903524255]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.6094143, 1474.5836)
+text = "YOU WON
+(I'll add an ending next week ):)"
+font_size = 64
+
+[node name="Monster" parent="." unique_id=1321825330 node_paths=PackedStringArray("player") instance=ExtResource("12_lc2xo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21230316, 1.495079, 649.7512)
+player = NodePath("../Players")
+initial_move_speed = 8.0
+final_move_speed = 15.0
+wander_speed = 25.0
+flee_distance = 45.0

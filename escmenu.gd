@@ -2,6 +2,7 @@ extends Control
 
 @onready var resume_button: Button = $VBoxContainer/ResumeButton
 @onready var quit_button: Button = $VBoxContainer/QuitButton
+@onready var escmenu = $escmenu
 
 const MAIN_MENU_PATH := "res://main_menu.tscn"
 
@@ -9,6 +10,7 @@ func _ready() -> void:
 	hide()
 	resume_button.pressed.connect(_on_resume_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
+	escmenu.play("default")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

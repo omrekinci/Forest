@@ -2,6 +2,58 @@
 
 [ext_resource type="Script" uid="uid://pap44o5niyu2" path="res://escmenu.gd" id="1_s03j3"]
 [ext_resource type="Texture2D" uid="uid://cfbwkdwpu6uc5" path="res://black.png" id="2_2grgg"]
+[ext_resource type="Texture2D" uid="uid://t5pmwdcujiqg" path="res://escmenu1.png" id="3_kngab"]
+[ext_resource type="Texture2D" uid="uid://2j2whefk1rh2" path="res://escmenu2.png" id="4_avbth"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg08p"]
+atlas = ExtResource("3_kngab")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx5fi"]
+atlas = ExtResource("3_kngab")
+region = Rect2(0, 1080, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1ivo"]
+atlas = ExtResource("3_kngab")
+region = Rect2(0, 2160, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8addc"]
+atlas = ExtResource("3_kngab")
+region = Rect2(0, 3240, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1niq"]
+atlas = ExtResource("3_kngab")
+region = Rect2(0, 4320, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ere0"]
+atlas = ExtResource("4_avbth")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2a8ig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pg08p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jx5fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1ivo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8addc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1niq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ere0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Escmenu" type="Control" unique_id=137668545]
 layout_mode = 3
@@ -24,7 +76,7 @@ offset_bottom = 756.0
 layout_mode = 2
 theme_override_colors/font_color = Color(0.91768664, 0.8004455, 0.22988746, 1)
 theme_override_font_sizes/font_size = 180
-text = "Forest
+text = "
 "
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=1062998532]
@@ -38,8 +90,14 @@ theme_override_font_sizes/font_size = 32
 text = "Quit to Main Menu"
 
 [node name="Black" type="Sprite2D" parent="." unique_id=1939835047]
+visible = false
 z_index = -1
 position = Vector2(1662.9999, 763)
 rotation = 0.2602068
 scale = Vector2(5.9722943, 34.536377)
 texture = ExtResource("2_2grgg")
+
+[node name="escmenu" type="AnimatedSprite2D" parent="." unique_id=1699871156]
+position = Vector2(960, 540)
+sprite_frames = SubResource("SpriteFrames_2a8ig")
+frame_progress = 0.3260351

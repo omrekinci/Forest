@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://b0dqxqjdhfity"]
 
 [ext_resource type="Texture2D" uid="uid://luks4qg66uqh" path="res://money/steps.png" id="1_o5rko"]
-[ext_resource type="Script" uid="uid://bahtxg7xb3uyp" path="res://money/steparea.gd" id="2_r8p2m"]
-[ext_resource type="Script" uid="uid://dql32da02mr3h" path="res://money/steparea1.gd" id="3_n2wms"]
 [ext_resource type="Script" uid="uid://craipcgd4qrkh" path="res://money/steparea2.gd" id="4_u6w3g"]
 [ext_resource type="Script" uid="uid://bxhnjrb6wh1yc" path="res://money/steparea4.gd" id="5_n2wms"]
 [ext_resource type="Script" uid="uid://e0f0hb5jk38s" path="res://money/steparea5.gd" id="6_u6w3g"]
@@ -27,28 +25,6 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_7taos"]
 
 [node name="Moneyscene" type="Node3D" unique_id=308435765]
-
-[node name="steps" type="Sprite3D" parent="." unique_id=181142501]
-transform = Transform3D(0.9154577, 0.40241408, 1.7590079e-08, 0, -4.371139e-08, 1, 0.40241408, -0.9154577, -4.0015927e-08, 0, 0, 0)
-shaded = true
-texture = ExtResource("1_o5rko")
-
-[node name="steparea" type="Area3D" parent="steps" unique_id=1095620813]
-script = ExtResource("2_r8p2m")
-
-[node name="stepcollision" type="CollisionShape3D" parent="steps/steparea" unique_id=881457771]
-shape = SubResource("BoxShape3D_2a8ig")
-
-[node name="steps2" type="Sprite3D" parent="." unique_id=749885247]
-transform = Transform3D(0.9689003, 0.24743675, -0.0026805291, 0.0024114726, 0.0013904236, 0.9999961, 0.24743953, -0.96890306, 0.0007504949, 0.9920709, 0, -1.969043)
-shaded = true
-texture = ExtResource("1_o5rko")
-
-[node name="steparea" type="Area3D" parent="steps2" unique_id=1412884946]
-script = ExtResource("3_n2wms")
-
-[node name="stepcollision" type="CollisionShape3D" parent="steps2/steparea" unique_id=1292375372]
-shape = SubResource("BoxShape3D_2a8ig")
 
 [node name="steps3" type="Sprite3D" parent="." unique_id=807856026]
 transform = Transform3D(0.999437, 0.03078118, -0.013352886, 0.0131809255, 0.0057826964, 0.9998964, 0.030855209, -0.9995094, 0.0053737164, 0.9920709, 0, -4.0279856)
@@ -197,11 +173,8 @@ shape = SubResource("BoxShape3D_2a8ig")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816473, 0.362257)
 script = ExtResource("17_jtulu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tree" unique_id=1621220672]
-shape = SubResource("BoxShape3D_7taos")
-
 [node name="tree2" type="Area3D" parent="." unique_id=1959646499]
-transform = Transform3D(1.919646, 0, 0, 0, 1, 0, 0, 0, 1, 3.75487, 0.816473, -2.3120217)
+transform = Transform3D(1.919646, 0, 0, 0, 1, 0, 0, 0, 1, 3.75487, 0.816473, -7.5871744)
 script = ExtResource("18_uvo0p")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tree2" unique_id=925012148]
@@ -213,11 +186,7 @@ transform = Transform3D(1.919646, 0, 0, 0, 1, 0, 0, 0, 1, -2.1663692, 0.816473, 
 script = ExtResource("19_sgnoo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tree3" unique_id=609350523]
-transform = Transform3D(3.336862, 0, 0, 0, 1, 0, 0, 0, 2.5996323, -0.5121727, 0, -2.1000857)
-shape = SubResource("BoxShape3D_7taos")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="tree3" unique_id=1710790379]
-transform = Transform3D(3.336862, 0, 0, 0, 1, 0, 0, 0, 2.5996323, -0.5121727, 0, -2.1000857)
+transform = Transform3D(3.336862, 0, 0, 0, 1, 0, 0, 0, 2.5996323, -0.5121727, 0, -6.7526064)
 shape = SubResource("BoxShape3D_7taos")
 
 [node name="tree4" type="Area3D" parent="." unique_id=1824115215]
@@ -280,21 +249,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.125171, 0, -13.0017395)
 [node name="Tree8" parent="." unique_id=2079319856 instance=ExtResource("20_sgnoo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3371353, 0, -13.0017395)
 
-[node name="Tree9" parent="." unique_id=1727878844 instance=ExtResource("20_sgnoo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7124515, 0, -7.350581)
-
-[node name="Tree10" parent="." unique_id=1895977085 instance=ExtResource("20_sgnoo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.749855, 0, -7.350581)
-
-[node name="Tree11" parent="." unique_id=1311702748 instance=ExtResource("20_sgnoo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.726841, 0, -1.8850908)
-
-[node name="Tree12" parent="." unique_id=1479569184 instance=ExtResource("20_sgnoo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.922759, 0, -1.8850908)
-
-[node name="Tree13" parent="." unique_id=901762158 instance=ExtResource("20_sgnoo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.940458, 0, -7.1150603)
-
 [node name="Tree14" parent="." unique_id=852250239 instance=ExtResource("20_sgnoo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.092802, 0, -19.393263)
 
@@ -313,9 +267,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.10618, 0, -27.840374)
 [node name="Tree19" parent="." unique_id=912971148 instance=ExtResource("20_sgnoo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.10618, 0, -17.959377)
 
-[node name="Tree20" parent="." unique_id=1547188521 instance=ExtResource("20_sgnoo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.10618, 0, -6.2339697)
-
 [node name="Money" parent="." unique_id=544108 instance=ExtResource("21_bbfi3")]
 transform = Transform3D(0.885719, 0, -0.46422178, 0, 1, 0, 0.46422178, 0, 0.885719, 0.6295786, 0, -5.940857)
 
@@ -329,22 +280,20 @@ transform = Transform3D(0.96346647, 0, 0.26782897, 0, 1, 0, -0.26782897, 0, 0.96
 transform = Transform3D(0.82733434, 0, -0.56170976, 0, 1, 0, 0.56170976, 0, 0.82733434, 0.29725742, 0, -41.376205)
 
 [node name="Money5" parent="." unique_id=1589927265 instance=ExtResource("21_bbfi3")]
-transform = Transform3D(0.96863747, 0, 0.2484788, 0, 1, 0, -0.2484788, 0, 0.96863747, -2.2505944, 0, -41.376205)
+transform = Transform3D(0.96863747, 0, 0.2484788, 0, 1, 0, -0.2484788, 0, 0.96863747, -1.2009537, 0, -42.051136)
 
 [node name="Money9" parent="." unique_id=324838855 instance=ExtResource("21_bbfi3")]
-transform = Transform3D(0.9541217, 0, -0.2994197, 0, 1, 0, 0.2994197, 0, 0.9541217, -2.7587464, 0, -42.630623)
+transform = Transform3D(0.06607026, 0.0011907674, 0.9978144, -0.0004639705, 0.9999992, -0.0011626533, -0.997815, -0.00038613955, 0.066070706, -0.46261978, 0, -43.138744)
 
 [node name="Money6" parent="." unique_id=1236531417 instance=ExtResource("21_bbfi3")]
-transform = Transform3D(0.83883977, 0, -0.5443785, 0, 1, 0, 0.5443785, 0, 0.83883977, -1.3860428, 0, -43.482048)
+transform = Transform3D(0.98198706, 0, -0.18894857, 0, 1, 0, 0.18894857, 0, 0.98198706, -1.3860428, 0, -44.03783)
 
 [node name="Money7" parent="." unique_id=1542327094 instance=ExtResource("21_bbfi3")]
 transform = Transform3D(0.8408586, 0, 0.54125506, 0, 1, 0, -0.54125506, 0, 0.8408586, 1.9206059, 0, -43.17291)
 
 [node name="Money8" parent="." unique_id=608659871 instance=ExtResource("21_bbfi3")]
-transform = Transform3D(-0.08215681, 0, 0.99661946, 0, 1, 0, -0.99661946, 0, -0.08215681, 0.5326631, 0, -44.12181)
+transform = Transform3D(0.4475019, 0.00042588112, 0.89428294, -0.0001404567, 0.99999994, -0.00040594142, -0.894283, 5.6051456e-05, 0.4475019, 0.5326631, 0, -43.79254)
 
-[connection signal="area_entered" from="steps/steparea" to="steps/steparea" method="_on_area_entered"]
-[connection signal="area_entered" from="steps2/steparea" to="steps2/steparea" method="_on_area_entered"]
 [connection signal="area_entered" from="steps3/steparea" to="steps3/steparea" method="_on_area_entered"]
 [connection signal="area_entered" from="steps4/steparea" to="steps4/steparea" method="_on_area_entered"]
 [connection signal="area_entered" from="steps5/steparea" to="steps5/steparea" method="_on_area_entered"]
