@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b2udddmk3k0rr" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bsjmt6jd77duw" path="res://player/body_area.gd" id="2_g6k8r"]
+[ext_resource type="Script" uid="uid://c5im56wk8q61u" path="res://player/tutorial.gd" id="2_kb6p2"]
 [ext_resource type="Script" uid="uid://chfepiljgtt8n" path="res://player/gunarea.gd" id="2_rkbax"]
+[ext_resource type="FontFile" uid="uid://clfnja8gi0an5" path="res://winscreen/Minecraft.ttf" id="2_wodsf"]
 [ext_resource type="Texture2D" uid="uid://d1bs48jfs7kj7" path="res://player/gun.png" id="3_g1dw6"]
 [ext_resource type="Script" uid="uid://cn2jji8uqgou" path="res://player/ip.gd" id="3_hg6s5"]
 [ext_resource type="AudioStream" uid="uid://bho0f8kx17awn" path="res://player/Gunblast.wav" id="3_qjkh3"]
@@ -212,21 +214,38 @@ mix_rate = 16000.0
 [node name="Player" type="CharacterBody3D" unique_id=1159174860]
 script = ExtResource("1_4flbx")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=793281831]
+[node name="Tutorial Canvas" type="CanvasLayer" parent="." unique_id=1632601924]
+
+[node name="Tutorial" type="Label" parent="Tutorial Canvas" unique_id=521987660]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_wodsf")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+script = ExtResource("2_kb6p2")
+sentences = Array[String](["Your car broke down in the middle of the forest.", "There is a Gas Station 1 KM away :D", "You need to follow the road and find safety", "Good Luck", "(Press the \"Tab Key\" to open inventory)"])
+
+[node name="Canvas1" type="CanvasLayer" parent="." unique_id=793281831]
 script = ExtResource("7_boad6")
 
-[node name="EnergyBar" type="ProgressBar" parent="CanvasLayer" unique_id=117775868]
+[node name="EnergyBar" type="ProgressBar" parent="Canvas1" unique_id=117775868]
 modulate = Color(0.76508856, 0.8450222, 0.97944957, 1)
 offset_left = 30.0
 offset_top = 700.0
 offset_right = 70.0
 offset_bottom = 1050.0
 theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+theme_override_fonts/font = ExtResource("2_wodsf")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hg6s5")
 fill_mode = 3
 show_percentage = false
 
-[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer" unique_id=88801866]
+[node name="StaminaBar" type="ProgressBar" parent="Canvas1" unique_id=88801866]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -235,30 +254,34 @@ offset_top = 50.0
 offset_right = 600.0
 offset_bottom = 85.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_wodsf")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8t03j")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="money" type="Label" parent="CanvasLayer" unique_id=1229704575]
+[node name="money" type="Label" parent="Canvas1" unique_id=1229704575]
 offset_left = 5.0
 offset_top = 100.0
 offset_right = 45.0
 offset_bottom = 167.0
+theme_override_fonts/font = ExtResource("2_wodsf")
 theme_override_font_sizes/font_size = 48
 
-[node name="bullets" type="Label" parent="CanvasLayer" unique_id=2074635545]
+[node name="bullets" type="Label" parent="Canvas1" unique_id=2074635545]
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_wodsf")
 theme_override_font_sizes/font_size = 64
 
-[node name="ammo" type="Label" parent="CanvasLayer" unique_id=1715141398]
+[node name="ammo" type="Label" parent="Canvas1" unique_id=1715141398]
 offset_left = 34.0
 offset_top = 43.0
 offset_right = 74.0
 offset_bottom = 88.0
+theme_override_fonts/font = ExtResource("2_wodsf")
 theme_override_font_sizes/font_size = 24
 
-[node name="IP" type="Label" parent="CanvasLayer" unique_id=1023345203]
+[node name="IP" type="Label" parent="Canvas1" unique_id=1023345203]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -266,6 +289,7 @@ offset_left = -70.0
 offset_right = -30.0
 offset_bottom = 23.0
 grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_wodsf")
 script = ExtResource("3_hg6s5")
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=1570752264]
@@ -300,7 +324,7 @@ animation = &"4"
 
 [node name="Camera" type="Camera3D" parent="Neck" unique_id=1710217290]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6705221, 0)
-far = 100.0
+far = 50.0
 script = ExtResource("4_rgyib")
 
 [node name="Gun" type="Sprite3D" parent="Neck/Camera" unique_id=440286558]

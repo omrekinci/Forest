@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pap44o5niyu2" path="res://escmenu.gd" id="1_s03j3"]
 [ext_resource type="Texture2D" uid="uid://cfbwkdwpu6uc5" path="res://black.png" id="2_2grgg"]
+[ext_resource type="FontFile" uid="uid://clfnja8gi0an5" path="res://winscreen/Minecraft.ttf" id="2_avbth"]
 [ext_resource type="Texture2D" uid="uid://t5pmwdcujiqg" path="res://escmenu1.png" id="3_kngab"]
 [ext_resource type="Texture2D" uid="uid://2j2whefk1rh2" path="res://escmenu2.png" id="4_avbth"]
 
@@ -81,11 +82,13 @@ text = "
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=1062998532]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_avbth")
 theme_override_font_sizes/font_size = 32
 text = "Resume"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1502228656]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_avbth")
 theme_override_font_sizes/font_size = 32
 text = "Quit to Main Menu"
 

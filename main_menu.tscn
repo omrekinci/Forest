@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dqw2sdlire8cs" path="res://main_menu.gd" id="1_06t4h"]
 [ext_resource type="Texture2D" uid="uid://c4kmfdl7fm84t" path="res://player/bob.png" id="2_7vrkn"]
+[ext_resource type="FontFile" uid="uid://clfnja8gi0an5" path="res://winscreen/Minecraft.ttf" id="2_dy7ct"]
 [ext_resource type="Script" uid="uid://depx7uy0bqyed" path="res://avatar_selector.gd" id="2_nlkkf"]
 [ext_resource type="Script" uid="uid://6fkcukiduybp" path="res://mic_select_button.gd" id="2_qe12f"]
 [ext_resource type="Texture2D" uid="uid://b60egju8jd2e8" path="res://player/çınar.png" id="3_qe12f"]
@@ -111,33 +112,39 @@ text = "
 
 [node name="HostButton" type="Button" parent="VBoxContainer" unique_id=1355407821]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dy7ct")
 theme_override_font_sizes/font_size = 32
 text = "Host"
 
 [node name="JoinButton" type="Button" parent="VBoxContainer" unique_id=1602970027]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dy7ct")
 theme_override_font_sizes/font_size = 32
 text = "Join"
 
 [node name="AddressInput" type="LineEdit" parent="VBoxContainer" unique_id=780355268]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dy7ct")
 theme_override_font_sizes/font_size = 24
 text = "127.0.0.1"
 alignment = 1
 
 [node name="AvatarButton" type="Button" parent="VBoxContainer" unique_id=767468101]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dy7ct")
 theme_override_font_sizes/font_size = 32
 text = "Choose Avatar"
 
 [node name="MicSelectButton" type="OptionButton" parent="VBoxContainer" unique_id=1412994937]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dy7ct")
 theme_override_font_sizes/font_size = 32
 alignment = 1
 script = ExtResource("2_qe12f")
 
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=395769554]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dy7ct")
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 

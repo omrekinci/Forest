@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://cj3urhkgglql3" path="res://DeathScreen.tscn" id="9_iotsf"]
 [ext_resource type="PackedScene" uid="uid://tvw5q5cbq2dy" path="res://inventory/InventoryUI.tscn" id="10_hve3p"]
 [ext_resource type="PackedScene" uid="uid://cop858cskiwwv" path="res://escmenu.tscn" id="10_mfdv2"]
+[ext_resource type="Script" uid="uid://dci6c35v7bhb6" path="res://win_area.gd" id="12_215e1"]
 [ext_resource type="Texture2D" uid="uid://csthwmhu4oso1" path="res://monster/road2.png" id="12_iotsf"]
 [ext_resource type="PackedScene" uid="uid://6scybx10k4ub" path="res://monster/monster.tscn" id="12_lc2xo"]
+[ext_resource type="PackedScene" uid="uid://c5ygbbe4ooxda" path="res://winscreen/winscreen.tscn" id="13_7sc4i"]
 [ext_resource type="PackedScene" uid="uid://w0oqosva0hq4" path="res://clarksstuff/clarksstuff.tscn" id="13_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://cihxbcwye5rs2" path="res://forest.tscn" id="14_7sc4i"]
 
@@ -47,11 +49,15 @@ uv1_scale = Vector3(1, 175, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_pielt"]
 size = Vector2(2, 200)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2a8ig"]
+size = Vector3(16.815674, 12.295227, 1)
+
 [node name="game" type="Node3D" unique_id=1103386871]
 script = ExtResource("1_hve3p")
 
 [node name="path" type="MeshInstance3D" parent="." unique_id=634071768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.372086, 0, -68.13689, 1612.1605)
+visible = false
 mesh = SubResource("BoxMesh_7taos")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1503581476]
@@ -108,6 +114,16 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.4
 [node name="Forest4" parent="." unique_id=204627928 instance=ExtResource("14_7sc4i")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.3944016, 0.6065774, 1189.8776)
 
+[node name="WinArea" type="Area3D" parent="." unique_id=1922084564]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.6094143, 1474.5836)
+script = ExtResource("12_215e1")
+
+[node name="Winscreen" parent="WinArea" unique_id=271916686 instance=ExtResource("13_7sc4i")]
+
+[node name="WinCollision" type="CollisionShape3D" parent="WinArea" unique_id=1358140934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96984863, -1.4495544, 0)
+shape = SubResource("BoxShape3D_2a8ig")
+
 [node name="Label3D" type="Label3D" parent="." unique_id=839252025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6094143, -44.342194)
 text = "Wrong Way :P"
@@ -126,3 +142,5 @@ initial_move_speed = 8.0
 final_move_speed = 15.0
 wander_speed = 25.0
 flee_distance = 45.0
+
+[connection signal="area_entered" from="WinArea" to="WinArea" method="_on_area_entered"]

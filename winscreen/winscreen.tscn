@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c5ygbbe4ooxda"]
+
+[ext_resource type="Script" uid="uid://cjuhqyt612qg8" path="res://winscreen/winscreen.gd" id="1_m0l1j"]
+[ext_resource type="FontFile" uid="uid://clfnja8gi0an5" path="res://winscreen/Minecraft.ttf" id="2_01q1x"]
+[ext_resource type="Texture2D" uid="uid://cfbwkdwpu6uc5" path="res://black.png" id="2_jx4kp"]
+
+[node name="Winscreen" type="Control" unique_id=271916686]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_m0l1j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1045674540]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 264.0
+offset_right = 1351.0
+offset_bottom = 816.0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1011446651]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91768664, 0.8004455, 0.22988746, 1)
+theme_override_fonts/font = ExtResource("2_01q1x")
+theme_override_font_sizes/font_size = 180
+text = "YOU WON
+:D"
+horizontal_alignment = 1
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=220159459]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_01q1x")
+theme_override_font_sizes/font_size = 32
+text = "Quit to Main Menu"
+
+[node name="Black" type="Sprite2D" parent="VBoxContainer" unique_id=996435749]
+z_index = -1
+position = Vector2(540.23083, 464.07065)
+rotation = 0.2602068
+scale = Vector2(17.591112, 34.536377)
+texture = ExtResource("2_jx4kp")

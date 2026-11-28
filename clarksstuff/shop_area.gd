@@ -1,5 +1,6 @@
 extends Area3D
 
+@onready var shoplabel = $ShopCanvasLayer/ShopLabel
 @onready var shopui = $shop
 @onready var shop_camera = $shopcam
 @onready var redbull = $redbull
@@ -12,6 +13,7 @@ var active_player_camera: Camera3D = null
 var original_camera_transform: Transform3D
 
 func _ready() -> void:
+	shoplabel.hide()
 	redbull.hide()
 	ammobox.hide()
 	
@@ -72,7 +74,9 @@ func close_shop() -> void:
 func _on_area_entered(area: Area3D) -> void:
 	if area.name == "BodyArea":
 		player_in_range = true
+		shoplabel.show()
 
 func _on_area_exited(area: Area3D) -> void:
 	if area.name == "BodyArea":
 		player_in_range = false
+		shoplabel.hide()

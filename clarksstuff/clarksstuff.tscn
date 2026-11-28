@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://qxa2i43rprfw" path="res://clarksstuff/shop_area.gd" id="3_46l3f"]
 [ext_resource type="Script" uid="uid://biyacvqy1gm0c" path="res://clarksstuff/shop.gd" id="4_ade2q"]
 [ext_resource type="Texture2D" uid="uid://diju3umv4lskc" path="res://redbull/redbull.png" id="4_uybw0"]
+[ext_resource type="FontFile" uid="uid://clfnja8gi0an5" path="res://winscreen/Minecraft.ttf" id="4_vxdrl"]
 [ext_resource type="Texture2D" uid="uid://br6ttv3i43huj" path="res://ammo/ammobox.png" id="6_6o0o0"]
 [ext_resource type="Texture2D" uid="uid://c3738ora4a7ur" path="res://clarksstuff/arrow2.png" id="7_6o0o0"]
 
@@ -35,8 +36,25 @@ texture = ExtResource("2_46l3f")
 [node name="ShopArea" type="Area3D" parent="." unique_id=695267839]
 script = ExtResource("3_46l3f")
 
+[node name="ShopCanvasLayer" type="CanvasLayer" parent="ShopArea" unique_id=383828629]
+
+[node name="ShopLabel" type="Label" parent="ShopArea/ShopCanvasLayer" unique_id=89230015]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -188.0
+offset_top = 40.0
+offset_right = 188.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_vxdrl")
+theme_override_font_sizes/font_size = 32
+text = "Press \"E\" to Open / Close Shop"
+horizontal_alignment = 1
+
 [node name="shopcam" type="Camera3D" parent="ShopArea" unique_id=338792997]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20329952, 0.7889073)
+far = 50.0
 
 [node name="redbull" type="Sprite3D" parent="ShopArea" unique_id=1280274520]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.31693774, 0.07461724, 0.16861486)

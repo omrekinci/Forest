@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var canvas1 = $Canvas1
+
 @export var walk_speed := 5.0
 @export var sprint_speed := 10.0
 @export var jump_speed := 4.5
@@ -44,7 +46,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	Numbers.health = 1
 	var is_local := is_multiplayer_authority()
-	$CanvasLayer.visible = is_local
+	canvas1.visible = is_local
 	camera.current = is_local
 
 	voice_output.play()
