@@ -2,7 +2,6 @@
 
 [ext_resource type="Shader" uid="uid://dwvep5jgawkmo" path="res://sky.gdshader" id="1_eow3j"]
 [ext_resource type="Script" uid="uid://1b21j2l62b72" path="res://game.gd" id="1_hve3p"]
-[ext_resource type="PackedScene" uid="uid://d2dtaajh0b2c4" path="res://tree/Tree.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://b7x5f2cmf4ejg" path="res://monster/grass3.png" id="4_iotsf"]
 [ext_resource type="PackedScene" uid="uid://bt0mwgs6xi2bj" path="res://car/car.tscn" id="5_7jktm"]
 [ext_resource type="PackedScene" uid="uid://cj3urhkgglql3" path="res://DeathScreen.tscn" id="9_iotsf"]
@@ -14,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://c5ygbbe4ooxda" path="res://winscreen/winscreen.tscn" id="13_7sc4i"]
 [ext_resource type="PackedScene" uid="uid://w0oqosva0hq4" path="res://clarksstuff/clarksstuff.tscn" id="13_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://cihxbcwye5rs2" path="res://forest.tscn" id="14_7sc4i"]
+[ext_resource type="PackedScene" uid="uid://7b5ec4ovykr4" path="res://sign/sign.tscn" id="14_80cx4"]
+[ext_resource type="PackedScene" uid="uid://trwjurysph5j" path="res://car/smoke/smoke.tscn" id="15_7sc4i"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7taos"]
 size = Vector3(100, 1, 800)
@@ -55,14 +56,15 @@ size = Vector3(16.815674, 12.295227, 1)
 [node name="game" type="Node3D" unique_id=1103386871]
 script = ExtResource("1_hve3p")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1165180308]
+transform = Transform3D(-0.32886645, 0.5683399, -0.75421256, 0, 0.79863554, 0.601815, 0.9443764, 0.19791676, -0.26264444, 0, 0, 0)
+visible = false
+shadow_enabled = true
+
 [node name="path" type="MeshInstance3D" parent="." unique_id=634071768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.372086, 0, -68.13689, 1612.1605)
 visible = false
 mesh = SubResource("BoxMesh_7taos")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1503581476]
-transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
-shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=913211522]
 environment = SubResource("Environment_fc0e3")
@@ -77,10 +79,10 @@ mesh = SubResource("BoxMesh_2a8ig")
 shape = SubResource("WorldBoundaryShape3D_e2grr")
 
 [node name="Car" parent="." unique_id=265846686 instance=ExtResource("5_7jktm")]
-transform = Transform3D(-0.55258024, 0, 0.8334596, 0, 0.77396923, 0, -0.8334596, 0, -0.55258024, 11.235566, 0.7747457, -6.46274)
+transform = Transform3D(-0.22775729, 0, 0.6619113, 0, 0.542, 0, -0.6619113, 0, -0.22775729, 6.5065303, 0.39960957, -5.051628)
 
-[node name="Tree" parent="." unique_id=1320892409 instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.069663, 1.37692, -4.5259156)
+[node name="Sign" parent="." unique_id=2137445620 instance=ExtResource("14_80cx4")]
+transform = Transform3D(2.1, 0, -5.9604645e-08, 0, 2.1, 0, 5.9604645e-08, 0, 2.1, 6.6673794, 1.0404054, -1.3486929)
 
 [node name="DeathScreen" parent="." unique_id=569119139 instance=ExtResource("9_iotsf")]
 
@@ -100,7 +102,7 @@ material_override = SubResource("StandardMaterial3D_iotsf")
 mesh = SubResource("PlaneMesh_pielt")
 
 [node name="Clarksstuff" parent="." unique_id=286981668 instance=ExtResource("13_lc2xo")]
-transform = Transform3D(-0.63601863, 0, -1.3584846, 0, 1.5, 0, 1.3584846, 0, -0.63601863, 13.145292, 0.6910934, -1.5945039)
+transform = Transform3D(-0.63601863, 0, -1.3584846, 0, 1.5, 0, 1.3584846, 0, -0.63601863, 9.493982, 0.6910934, 1.3380139)
 
 [node name="Forest" parent="." unique_id=649987834 instance=ExtResource("14_7sc4i")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.4595647, 0.6065774, 27.621197)
@@ -142,5 +144,8 @@ initial_move_speed = 8.0
 final_move_speed = 15.0
 wander_speed = 25.0
 flee_distance = 45.0
+
+[node name="Smoke" parent="." unique_id=2029190967 instance=ExtResource("15_7sc4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7689757, 0.49938536, -2.5757926)
 
 [connection signal="area_entered" from="WinArea" to="WinArea" method="_on_area_entered"]

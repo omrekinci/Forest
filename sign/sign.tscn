@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://7b5ec4ovykr4"]
+
+[ext_resource type="Texture2D" uid="uid://bvgef3ha0f2xu" path="res://sign/signf.png" id="1_a3q0v"]
+[ext_resource type="Texture2D" uid="uid://bijmukk3j5oep" path="res://sign/signb.png" id="2_nwe73"]
+[ext_resource type="FontFile" uid="uid://clfnja8gi0an5" path="res://winscreen/Minecraft.ttf" id="3_c6gx8"]
+
+[node name="Sign" type="Node3D" unique_id=2137445620]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0624132)
+
+[node name="signf" type="Sprite3D" parent="." unique_id=1817630630]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.9364595)
+shaded = true
+double_sided = false
+texture = ExtResource("1_a3q0v")
+
+[node name="signb" type="Sprite3D" parent="." unique_id=972116009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9364595)
+shaded = true
+double_sided = false
+texture = ExtResource("2_nwe73")
+
+[node name="signlabel" type="Label3D" parent="." unique_id=1426953872]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.04695943, -0.983416)
+shaded = true
+double_sided = false
+text = "1 KM"
+font = ExtResource("3_c6gx8")
