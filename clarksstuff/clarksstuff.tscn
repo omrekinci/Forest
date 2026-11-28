@@ -54,7 +54,7 @@ horizontal_alignment = 1
 
 [node name="shopcam" type="Camera3D" parent="ShopArea" unique_id=338792997]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20329952, 0.7889073)
-far = 50.0
+far = 25.0
 
 [node name="redbull" type="Sprite3D" parent="ShopArea" unique_id=1280274520]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.31693774, 0.07461724, 0.16861486)

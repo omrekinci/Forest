@@ -15,6 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://c60xblsoihuo5" path="res://player/john.png" id="7_kb6p2"]
 [ext_resource type="Texture2D" uid="uid://uvbrleshtjkh" path="res://player/simon.png" id="8_wodsf"]
 [ext_resource type="Texture2D" uid="uid://c4kmfdl7fm84t" path="res://player/bob.png" id="10_8t03j"]
+[ext_resource type="AudioStream" uid="uid://c7vy42tk6pyei" path="res://sounds/road.wav" id="16_32hag"]
+[ext_resource type="Script" uid="uid://dlbd6yxkwhaog" path="res://player/asphalt_walking.gd" id="17_tqiix"]
+[ext_resource type="Script" uid="uid://diemv3lgo7jra" path="res://player/grass_walking.gd" id="18_c35mf"]
+[ext_resource type="AudioStream" uid="uid://bfk6pg82jqiq0" path="res://sounds/grass.wav" id="19_65viv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hg6s5"]
 bg_color = Color(0.2816111, 0.590644, 0.9515695, 1)
@@ -324,7 +328,7 @@ animation = &"4"
 
 [node name="Camera" type="Camera3D" parent="Neck" unique_id=1710217290]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6705221, 0)
-far = 50.0
+far = 20.0
 script = ExtResource("4_rgyib")
 
 [node name="Gun" type="Sprite3D" parent="Neck/Camera" unique_id=440286558]
@@ -370,6 +374,21 @@ bus = &"Record"
 stream = SubResource("AudioStreamGenerator_2a8ig")
 max_distance = 22.5
 
+[node name="AsphaltWalking" type="AudioStreamPlayer3D" parent="." unique_id=2084766372]
+stream = ExtResource("16_32hag")
+volume_db = 5.0
+max_distance = 2.5
+script = ExtResource("17_tqiix")
+
+[node name="GrassWalking" type="AudioStreamPlayer3D" parent="." unique_id=1244497601]
+stream = ExtResource("16_32hag")
+volume_db = 5.0
+max_distance = 2.5
+script = ExtResource("18_c35mf")
+audio_streams = Array[AudioStream]([ExtResource("19_65viv")])
+
+[connection signal="area_entered" from="Body/BodyArea" to="." method="_on_body_area_area_entered"]
 [connection signal="area_entered" from="Body/BodyArea" to="Body/BodyArea" method="_on_area_entered"]
+[connection signal="area_exited" from="Body/BodyArea" to="." method="_on_body_area_area_exited"]
 [connection signal="area_entered" from="Neck/Camera/gunarea" to="Neck/Camera/gunarea" method="_on_area_entered"]
 [connection signal="area_exited" from="Neck/Camera/gunarea" to="Neck/Camera/gunarea" method="_on_area_exited"]

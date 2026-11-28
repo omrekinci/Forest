@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cnaqwc7mvi73k"]
+
+[ext_resource type="Script" uid="uid://dnvto86jwnu6w" path="res://sounds/windsounds.gd" id="1_i0q3h"]
+[ext_resource type="AudioStream" uid="uid://be8uv5sjkjq0f" path="res://sounds/wind.wav" id="2_rtyxb"]
+[ext_resource type="AudioStream" uid="uid://tj8gq64krbey" path="res://sounds/wind2.wav" id="3_ixydl"]
+[ext_resource type="AudioStream" uid="uid://du4r2cmi58bc4" path="res://sounds/wind3.wav" id="4_mw6b7"]
+
+[node name="Windsounds" type="Node3D" unique_id=346737230]
+script = ExtResource("1_i0q3h")
+sound_effects = Array[AudioStream]([ExtResource("2_rtyxb"), ExtResource("3_ixydl"), ExtResource("4_mw6b7")])
+
+[node name="Player1" type="AudioStreamPlayer" parent="." unique_id=31425910]
+
+[node name="Player2" type="AudioStreamPlayer" parent="." unique_id=1296575990]

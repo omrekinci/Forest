@@ -1,26 +1,65 @@
 [gd_scene format=3 uid="uid://c7mi5oq4wrx7p"]
 
-[ext_resource type="Shader" uid="uid://dwvep5jgawkmo" path="res://sky.gdshader" id="1_eow3j"]
 [ext_resource type="Script" uid="uid://1b21j2l62b72" path="res://game.gd" id="1_hve3p"]
-[ext_resource type="Texture2D" uid="uid://b7x5f2cmf4ejg" path="res://monster/grass3.png" id="4_iotsf"]
+[ext_resource type="Texture2D" uid="uid://d3qxv4ydrxmha" path="res://Grass002_2K-PNG_Color.png" id="2_80cx4"]
+[ext_resource type="Texture2D" uid="uid://0cptr6sebej4" path="res://Grass002_2K-PNG_NormalGL.png" id="3_e8heu"]
+[ext_resource type="Texture2D" uid="uid://bp5f401aopk5j" path="res://Grass002_2K-PNG_Roughness.png" id="4_e8heu"]
 [ext_resource type="PackedScene" uid="uid://bt0mwgs6xi2bj" path="res://car/car.tscn" id="5_7jktm"]
+[ext_resource type="Texture2D" uid="uid://d1glay13t06db" path="res://Road008A_2K-PNG_Roughness.png" id="7_rvswv"]
+[ext_resource type="Texture2D" uid="uid://dt3la7mhvfsfe" path="res://Road008A_2K-PNG_Color.png" id="8_7sc4i"]
+[ext_resource type="Texture2D" uid="uid://xmycx1u7kkps" path="res://Road008A_2K-PNG_NormalGL.png" id="9_80cx4"]
 [ext_resource type="PackedScene" uid="uid://cj3urhkgglql3" path="res://DeathScreen.tscn" id="9_iotsf"]
 [ext_resource type="PackedScene" uid="uid://tvw5q5cbq2dy" path="res://inventory/InventoryUI.tscn" id="10_hve3p"]
 [ext_resource type="PackedScene" uid="uid://cop858cskiwwv" path="res://escmenu.tscn" id="10_mfdv2"]
-[ext_resource type="Script" uid="uid://dci6c35v7bhb6" path="res://win_area.gd" id="12_215e1"]
-[ext_resource type="Texture2D" uid="uid://csthwmhu4oso1" path="res://monster/road2.png" id="12_iotsf"]
 [ext_resource type="PackedScene" uid="uid://6scybx10k4ub" path="res://monster/monster.tscn" id="12_lc2xo"]
-[ext_resource type="PackedScene" uid="uid://c5ygbbe4ooxda" path="res://winscreen/winscreen.tscn" id="13_7sc4i"]
 [ext_resource type="PackedScene" uid="uid://w0oqosva0hq4" path="res://clarksstuff/clarksstuff.tscn" id="13_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://cihxbcwye5rs2" path="res://forest.tscn" id="14_7sc4i"]
 [ext_resource type="PackedScene" uid="uid://7b5ec4ovykr4" path="res://sign/sign.tscn" id="14_80cx4"]
 [ext_resource type="PackedScene" uid="uid://trwjurysph5j" path="res://car/smoke/smoke.tscn" id="15_7sc4i"]
+[ext_resource type="PackedScene" uid="uid://cnaqwc7mvi73k" path="res://sounds/windsounds.tscn" id="19_boyg6"]
+[ext_resource type="Script" uid="uid://cvmj41jpo62v0" path="res://random_sounds.gd" id="19_vaj68"]
+[ext_resource type="AudioStream" uid="uid://jl76ix4tq0kn" path="res://sounds/crow.wav" id="20_i2p71"]
+[ext_resource type="AudioStream" uid="uid://dapanhslog2gn" path="res://sounds/howl.wav" id="21_xa8c5"]
+[ext_resource type="AudioStream" uid="uid://dxe6xvsvtddjx" path="res://sounds/sigh.wav" id="22_5b14r"]
+[ext_resource type="AudioStream" uid="uid://b0g3kdrhl7a3j" path="res://sounds/knock.wav" id="23_bnpwn"]
+[ext_resource type="AudioStream" uid="uid://6ets0hpi0agk" path="res://sounds/crickets.wav" id="24_36jdj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7taos"]
 size = Vector3(100, 1, 800)
 
+[sub_resource type="Shader" id="Shader_215e1"]
+code = "shader_type sky;
+
+uniform vec3 sky_color : source_color = vec3(0.005, 0.005, 0.01);
+uniform float star_density : hint_range(1.0, 200.0) = 80.0;
+uniform float star_brightness : hint_range(0.1, 10.0) = 2.5;
+
+float hash(vec3 p) {
+    p = fract(p * vec3(0.1031, 0.1030, 0.0973));
+    p += dot(p, p.yzx + 33.33);
+    return fract((p.x + p.y) * p.z);
+}
+
+void sky() {
+    vec3 col = sky_color;
+
+    vec3 dir = EYEDIR * star_density;
+    vec3 grid_id = floor(dir);
+    
+    float n = hash(grid_id);
+    if (n > 0.94) {
+        vec3 cell_pos = fract(dir) - 0.5;
+        float dist = length(cell_pos);
+        float star = smoothstep(0.15, 0.0, dist) * star_brightness;
+        
+        col += vec3(star);
+    }
+
+    COLOR = col;
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vef74"]
-shader = ExtResource("1_eow3j")
+shader = SubResource("Shader_215e1")
 shader_parameter/sky_color = Color(0.005, 0.005, 0.01, 1)
 shader_parameter/star_density = 80.0
 shader_parameter/star_brightness = 2.5
@@ -32,33 +71,49 @@ sky_material = SubResource("ShaderMaterial_vef74")
 background_mode = 2
 sky = SubResource("Sky_j5wjh")
 ssao_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.31798407, 0.35109398, 0.39084718, 1)
+fog_light_energy = 0.1
+fog_depth_begin = 5.0
+fog_depth_end = 15.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.13922688, 0.15553147, 0.2110214, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lc2xo"]
-albedo_texture = ExtResource("4_iotsf")
-uv1_scale = Vector3(5, 5, 5)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e8heu"]
+albedo_texture = ExtResource("2_80cx4")
+roughness_texture = ExtResource("4_e8heu")
+normal_enabled = true
+normal_texture = ExtResource("3_e8heu")
+uv1_scale = Vector3(700, 700, 700)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2a8ig"]
-material = SubResource("StandardMaterial3D_lc2xo")
+material = SubResource("StandardMaterial3D_e8heu")
 size = Vector3(5000, 0.4, 1989.951)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_e2grr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iotsf"]
-albedo_texture = ExtResource("12_iotsf")
-uv1_scale = Vector3(1, 175, 1)
+albedo_texture = ExtResource("8_7sc4i")
+roughness_texture = ExtResource("7_rvswv")
+normal_enabled = true
+normal_texture = ExtResource("9_80cx4")
+uv1_scale = Vector3(1, 300, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pielt"]
 size = Vector2(2, 200)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2a8ig"]
-size = Vector3(16.815674, 12.295227, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_7taos"]
+size = Vector3(8.825033, 39.125282, 8188.2676)
 
 [node name="game" type="Node3D" unique_id=1103386871]
 script = ExtResource("1_hve3p")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1165180308]
-transform = Transform3D(-0.32886645, 0.5683399, -0.75421256, 0, 0.79863554, 0.601815, 0.9443764, 0.19791676, -0.26264444, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1110436282]
+transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 0, 0, 0)
 visible = false
+light_energy = 7.3
 shadow_enabled = true
 
 [node name="path" type="MeshInstance3D" parent="." unique_id=634071768]
@@ -78,6 +133,18 @@ mesh = SubResource("BoxMesh_2a8ig")
 [node name="FloorCollision" type="CollisionShape3D" parent="Floor/FloorBody" unique_id=1055109879]
 shape = SubResource("WorldBoundaryShape3D_e2grr")
 
+[node name="Road" type="MeshInstance3D" parent="." unique_id=1663927012]
+transform = Transform3D(6.5, 0, 9.536743e-07, 0, 1, 0, 0, 0, 30.000002, 0, -0.27032703, 0)
+material_override = SubResource("StandardMaterial3D_iotsf")
+mesh = SubResource("PlaneMesh_pielt")
+
+[node name="RoadArea" type="Area3D" parent="Road" unique_id=1307730011 groups=["road"]]
+transform = Transform3D(0.15384616, 0, -4.8906372e-09, 0, 1, 0, 0, 0, 0.03333333, 0, 0.27032703, 0)
+
+[node name="RoadCollisionShape" type="CollisionShape3D" parent="Road/RoadArea" unique_id=198415647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21493721, 1.1823025, 440.21252)
+shape = SubResource("BoxShape3D_7taos")
+
 [node name="Car" parent="." unique_id=265846686 instance=ExtResource("5_7jktm")]
 transform = Transform3D(-0.22775729, 0, 0.6619113, 0, 0.542, 0, -0.6619113, 0, -0.22775729, 6.5065303, 0.39960957, -5.051628)
 
@@ -96,11 +163,6 @@ transform = Transform3D(2.1, 0, -5.9604645e-08, 0, 2.1, 0, 5.9604645e-08, 0, 2.1
 _spawnable_scenes = PackedStringArray("uid://nu4w3ja6e1ff")
 spawn_path = NodePath("../Players")
 
-[node name="Road" type="MeshInstance3D" parent="." unique_id=1663927012]
-transform = Transform3D(6.5, 0, 9.536743e-07, 0, 1, 0, 0, 0, 30.000002, 0, -0.27032703, 0)
-material_override = SubResource("StandardMaterial3D_iotsf")
-mesh = SubResource("PlaneMesh_pielt")
-
 [node name="Clarksstuff" parent="." unique_id=286981668 instance=ExtResource("13_lc2xo")]
 transform = Transform3D(-0.63601863, 0, -1.3584846, 0, 1.5, 0, 1.3584846, 0, -0.63601863, 9.493982, 0.6910934, 1.3380139)
 
@@ -115,16 +177,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.4
 
 [node name="Forest4" parent="." unique_id=204627928 instance=ExtResource("14_7sc4i")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.3944016, 0.6065774, 1189.8776)
-
-[node name="WinArea" type="Area3D" parent="." unique_id=1922084564]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.6094143, 1474.5836)
-script = ExtResource("12_215e1")
-
-[node name="Winscreen" parent="WinArea" unique_id=271916686 instance=ExtResource("13_7sc4i")]
-
-[node name="WinCollision" type="CollisionShape3D" parent="WinArea" unique_id=1358140934]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96984863, -1.4495544, 0)
-shape = SubResource("BoxShape3D_2a8ig")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=839252025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6094143, -44.342194)
@@ -148,4 +200,70 @@ flee_distance = 45.0
 [node name="Smoke" parent="." unique_id=2029190967 instance=ExtResource("15_7sc4i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7689757, 0.49938536, -2.5757926)
 
-[connection signal="area_entered" from="WinArea" to="WinArea" method="_on_area_entered"]
+[node name="RandomSounds" type="AudioStreamPlayer3D" parent="." unique_id=1926564006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.96022034, 0, 0)
+max_distance = 50.0
+script = ExtResource("19_vaj68")
+audio_streams = Array[AudioStream]([ExtResource("20_i2p71"), ExtResource("21_xa8c5"), ExtResource("22_5b14r"), ExtResource("23_bnpwn"), ExtResource("24_36jdj")])
+min_wait_time = 6.0
+max_wait_time = 10.0
+
+[node name="RandomSounds2" type="AudioStreamPlayer3D" parent="." unique_id=159703757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.96022034, 0, 155.78883)
+max_distance = 50.0
+script = ExtResource("19_vaj68")
+audio_streams = Array[AudioStream]([ExtResource("20_i2p71"), ExtResource("21_xa8c5"), ExtResource("22_5b14r"), ExtResource("23_bnpwn"), ExtResource("24_36jdj")])
+min_wait_time = 6.0
+max_wait_time = 10.0
+
+[node name="RandomSounds3" type="AudioStreamPlayer3D" parent="." unique_id=1003893340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.96022034, 0, 321.71103)
+max_distance = 50.0
+script = ExtResource("19_vaj68")
+audio_streams = Array[AudioStream]([ExtResource("20_i2p71"), ExtResource("21_xa8c5"), ExtResource("22_5b14r"), ExtResource("23_bnpwn"), ExtResource("24_36jdj")])
+min_wait_time = 6.0
+max_wait_time = 10.0
+
+[node name="RandomSounds4" type="AudioStreamPlayer3D" parent="." unique_id=340982477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.96022034, 0, 477.49988)
+max_distance = 50.0
+script = ExtResource("19_vaj68")
+audio_streams = Array[AudioStream]([ExtResource("20_i2p71"), ExtResource("21_xa8c5"), ExtResource("22_5b14r"), ExtResource("23_bnpwn"), ExtResource("24_36jdj")])
+min_wait_time = 6.0
+max_wait_time = 10.0
+
+[node name="RandomSounds5" type="AudioStreamPlayer3D" parent="." unique_id=597733724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.96022034, 0, 911.0115)
+max_distance = 50.0
+script = ExtResource("19_vaj68")
+audio_streams = Array[AudioStream]([ExtResource("20_i2p71"), ExtResource("21_xa8c5"), ExtResource("22_5b14r"), ExtResource("23_bnpwn"), ExtResource("24_36jdj")])
+min_wait_time = 6.0
+max_wait_time = 10.0
+
+[node name="RandomSounds6" type="AudioStreamPlayer3D" parent="." unique_id=707170771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.96022034, 0, 1066.8003)
+max_distance = 50.0
+script = ExtResource("19_vaj68")
+audio_streams = Array[AudioStream]([ExtResource("20_i2p71"), ExtResource("21_xa8c5"), ExtResource("22_5b14r"), ExtResource("23_bnpwn"), ExtResource("24_36jdj")])
+min_wait_time = 6.0
+max_wait_time = 10.0
+
+[node name="RandomSounds7" type="AudioStreamPlayer3D" parent="." unique_id=1128132906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.96022034, 0, 1232.7225)
+max_distance = 50.0
+script = ExtResource("19_vaj68")
+audio_streams = Array[AudioStream]([ExtResource("20_i2p71"), ExtResource("21_xa8c5"), ExtResource("22_5b14r"), ExtResource("23_bnpwn"), ExtResource("24_36jdj")])
+min_wait_time = 6.0
+max_wait_time = 10.0
+
+[node name="RandomSounds8" type="AudioStreamPlayer3D" parent="." unique_id=1384226825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.96022034, 0, 1388.5114)
+max_distance = 50.0
+script = ExtResource("19_vaj68")
+audio_streams = Array[AudioStream]([ExtResource("20_i2p71"), ExtResource("21_xa8c5"), ExtResource("22_5b14r"), ExtResource("23_bnpwn"), ExtResource("24_36jdj")])
+min_wait_time = 6.0
+max_wait_time = 10.0
+
+[node name="Windsounds" parent="." unique_id=346737230 instance=ExtResource("19_boyg6")]
+min_pitch = 0.4
+max_pitch = 0.7

@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
 @onready var canvas1 = $Canvas1
+@onready var asphalt_walking = $AsphaltWalking
+@onready var grass_walking = $GrassWalking
+@onready var body_area = $Body/BodyArea
 
 @export var walk_speed := 5.0
 @export var sprint_speed := 10.0
@@ -21,6 +24,7 @@ extends CharacterBody3D
 
 var stamina := 100.0
 var has_stamina := false
+var is_on_road := false
 
 @onready var neck: Node3D = $Neck
 @onready var camera: Camera3D = $Neck/Camera
@@ -51,6 +55,9 @@ func _ready() -> void:
 
 	voice_output.play()
 	playback = voice_output.get_stream_playback() as AudioStreamGeneratorPlayback
+
+	body_area.area_entered.connect(_on_body_area_area_entered)
+	body_area.area_exited.connect(_on_body_area_area_exited)
 
 	if is_local:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -226,5 +233,42 @@ func _physics_process(delta: float) -> void:
 			velocity.z = move_toward(velocity.z, 0, current_speed)
 
 		move_and_slide()
+
+		var is_walking = is_moving and is_on_floor()
+		if is_walking:
+			if is_on_road:
+				asphalt_walking.is_sprinting = is_sprinting
+				if grass_walking.playing:
+					grass_walking.stop()
+				if not asphalt_walking.playing:
+					asphalt_walking.play()
+			else:
+				grass_walking.is_sprinting = is_sprinting
+				if asphalt_walking.playing:
+					asphalt_walking.stop()
+				if not grass_walking.playing:
+					grass_walking.play()
+		else:
+			asphalt_walking.is_sprinting = false
+			grass_walking.is_sprinting = false
+			if asphalt_walking.playing:
+				asphalt_walking.stop()
+			if grass_walking.playing:
+				grass_walking.stop()
+
 	elif Numbers.shopisopened == true:
+		asphalt_walking.is_sprinting = false
+		grass_walking.is_sprinting = false
+		if asphalt_walking.playing:
+			asphalt_walking.stop()
+		if grass_walking.playing:
+			grass_walking.stop()
 		pass
+
+func _on_body_area_area_entered(area: Area3D) -> void:
+	if area.is_in_group("road"):
+		is_on_road = true
+
+func _on_body_area_area_exited(area: Area3D) -> void:
+	if area.is_in_group("road"):
+		is_on_road = false
